@@ -86,12 +86,8 @@ public class Machine {
 	}
 
 	public void highlightNEONSubregister(EnumRegisterType regType, int dataSize, int NEONIndex, int subIndex) {
-		int width = dataSize / 8;
-		subIndex = subIndex * (dataSize / 8);
-		dataSize = 8;
-		int from = regType.getSizeInBytes() * NEONIndex + subIndex;
-		int to = from + width;
-		highlightNEONBytes(from, to - 1);
+		int from = 16 * NEONIndex;
+		highlightNEONBytes(from, from + dataSize / 8 - 1);
 	}
 
 	public void highlightMemoryBytes(int from, int to) {
@@ -104,8 +100,8 @@ public class Machine {
 
 	public void highlightNEONRegister(EnumRegisterType type, int index) {
 		eventBus.fireEvent(new NEONRegisterChangedHighlightEvent(
-				index * type.getSizeInBytes(),
-				index * type.getSizeInBytes() + type.getSizeInBytes() - 1));
+				index * 16,
+				index * 16 + type.getSizeInBytes() - 1));
 	}
 
 	/**

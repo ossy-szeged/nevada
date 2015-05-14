@@ -94,9 +94,9 @@ public class NEONRegisterSet extends Composite implements HasMultipleValue,
 		initWidget(uiBinder.createAndBindUi(this));
 		typeSelectors[0] = lowerSelector;
 		typeSelectors[1] = higherSelector;
-		registers = new NEONRegister[16];
+		registers = new NEONRegister[32];
 
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < 32; i++) {
 			RegisterViewSettings view1 = new RegisterViewSettings(false, 8, false, NumberFormat.decimal);
 			RegisterViewSettings view2 = new RegisterViewSettings(false, 8, false, NumberFormat.decimal);
 			registers[i] = new NEONRegister(null);
@@ -108,7 +108,7 @@ public class NEONRegisterSet extends Composite implements HasMultipleValue,
 		}
 		this.setEventBus(eventBus);
 		subscribeEvents();
-		selectionManager = new SelectionManager(16);
+		selectionManager = new SelectionManager(32);
 
 		selectionManager.change(0, false, false);
 		updateRegisterSelection();
@@ -171,7 +171,7 @@ public class NEONRegisterSet extends Composite implements HasMultipleValue,
 			}
 		};
 
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < 32; i++) {
 			registers[i].addRegisterSelectedHandler(selectionChangedHandler);
 			registers[i].addValuePartChangedHandleHandler(valueChangeHandler);
 		}
@@ -218,7 +218,7 @@ public class NEONRegisterSet extends Composite implements HasMultipleValue,
 	@Override
 	public void setAllValue(int[] values) {
 		int[] NEONValue = new int[4];
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < 32; i++) {
 			NEONValue[0] = values[i * 4 + 0];
 			NEONValue[1] = values[i * 4 + 1];
 			NEONValue[2] = values[i * 4 + 2];
@@ -233,20 +233,20 @@ public class NEONRegisterSet extends Composite implements HasMultipleValue,
 	}
 
 	/**
-	 * 4*16 integer needed
+	 * 4*32 integer needed
 	 */
 	@Override
 	public void setAllValue(int[] values, boolean fireEvent) {
-		for (int i = 0; i < 4 * 16; i++) {
+		for (int i = 0; i < 4 * 32; i++) {
 			setOneValue(i, values[i], fireEvent);
 		}
 	}
 
 	@Override
 	public int[] getAllValue() {
-		int[] values = new int[4 * 16];
+		int[] values = new int[4 * 32];
 
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < 32; i++) {
 			int[] NEONValue = registers[i].getAllValue();
 			values[4 * i + 0] = NEONValue[0];
 			values[4 * i + 1] = NEONValue[1];

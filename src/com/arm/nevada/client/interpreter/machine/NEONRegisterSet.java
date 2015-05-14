@@ -43,7 +43,7 @@ public class NEONRegisterSet extends Storage
 	private static final Logger logger = Logger.getLogger(NEONRegisterSet.class.getName());
 
 	public NEONRegisterSet(EventBus eventBus) {
-		super(16 * 4, eventBus);
+		super(32 * 4, eventBus);
 	}
 
 	public int getSubRegister(EnumRegisterType registerType, int size, int index, int subIndex) {
@@ -131,16 +131,16 @@ public class NEONRegisterSet extends Storage
 	@Override
 	public int[] getDouble(int index) {
 		int[] out = new int[2];
-		out[0] = getOneValue(index * 2 + 0);
-		out[1] = getOneValue(index * 2 + 1);
+		out[0] = getOneValue(index * 4 + 0);
+		out[1] = getOneValue(index * 4 + 1);
 		return out;
 	}
 
 	@Override
 	public void setDouble(int index, int... values) {
 		assert values.length == 2;
-		setOneValue(2 * index + 0, values[0], true);
-		setOneValue(2 * index + 1, values[1], true);
+		setOneValue(4 * index + 0, values[0], true);
+		setOneValue(4 * index + 1, values[1], true);
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class NEONRegisterSet extends Storage
 		setDouble(index, values);
 		if (fireEvent) {
 			for (int i = 0; i < values.length; i++) {
-				fireValueChanged(2 * index + i, values[i]);
+				fireValueChanged(4 * index + i, values[i]);
 			}
 		}
 

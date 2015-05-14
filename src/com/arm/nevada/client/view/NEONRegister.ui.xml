@@ -26,10 +26,6 @@
 								<c:DoubleRegister ui:field="highDoubleRegister"
 									addStyleNames="{style.fullWidth}" />
 							</g:cell>
-							<g:cell>
-								<g:Label addStyleNames="{res.style.indexLabel}"
-									ui:field="higherD" />
-							</g:cell>
 						</g:HorizontalPanel>
 					</g:cell>
 					<g:cell width="50%">
@@ -37,10 +33,6 @@
 							<g:cell width="100%">
 								<c:DoubleRegister ui:field="lowDoubleRegister"
 									addStyleNames="{style.fullWidth}" />
-							</g:cell>
-							<g:cell>
-								<g:Label addStyleNames="{res.style.indexLabel}"
-									ui:field="lowerD" />
 							</g:cell>
 						</g:HorizontalPanel>
 					</g:cell>

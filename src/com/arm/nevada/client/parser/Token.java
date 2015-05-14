@@ -1030,7 +1030,7 @@ class D extends RegisterToken {
 }
 
 /**
- * Accepts one NEON Q (QUAD) register. Q0..Q16
+ * Accepts one NEON Q (QUAD) register. Q0..Q31
  */
 class Q extends RegisterToken {
 	private static final Q staticThis = new Q();
@@ -1044,7 +1044,7 @@ class Q extends RegisterToken {
 	}
 
 	MSG parse(String instruction, int pos, Arguments a) {
-		return super.parse(instruction, pos, a, 'q', 15);
+		return super.parse(instruction, pos, a, 'q', 31);
 	}
 }
 

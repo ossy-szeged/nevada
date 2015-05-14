@@ -52,6 +52,7 @@ public class MyEntry implements EntryPoint {
 		AppUI appUI = new AppUI(eventBus, machineController);
 
 		RootPanel rootPanel = RootPanel.get("appContainer");
+		rootPanel.setWidth("1200px");
 		rootPanel.add(appUI);
 
 		StateSaverAndLoader.restoreState(machine, appUI.getInstructionEditor());

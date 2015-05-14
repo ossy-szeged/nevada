@@ -63,8 +63,6 @@ public class NEONRegister extends Composite implements
 	@UiField
 	ResourceBundle res;
 	@UiField
-	Label lowerD, higherD;
-	@UiField
 	Label Q;
 	@UiField(provided = true)
 	DoubleRegister lowDoubleRegister;
@@ -122,8 +120,6 @@ public class NEONRegister extends Composite implements
 	public void setQuadLabel(int value) {
 		this.quadNumber = value;
 		Q.setText("Q" + value);
-		lowerD.setText("D" + value * 2);
-		higherD.setText("D" + (value * 2 + 1));
 	}
 
 	public int getQuadNumber() {
