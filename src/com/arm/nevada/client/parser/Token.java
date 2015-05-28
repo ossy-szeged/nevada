@@ -1049,54 +1049,6 @@ class Q extends RegisterToken {
 }
 
 /**
- * Accepts one or two NEON Q (QUAD) register. In both cases two indexes are saved.
- */
-class Q2in1 extends Q {
-	private static final Q2in1 staticThis = new Q2in1();
-
-	static Token p() {
-		return staticThis;
-	}
-
-	private Q2in1() {
-		super();
-	}
-
-	MSG parse(String instruction, int pos, Arguments a) {
-		MSG msg = super.parse(instruction, pos, a);
-		if (!msg.isError()) {
-			int parsed = a.getRegisterIndexes().get(a.getRegisterIndexes().size() - 1);
-			a.getRegisterIndexes().add(parsed);
-		}
-		return msg;
-	}
-}
-
-/**
- * Accepts one or two NEON D (Double) register. In both cases two indexes are saved.
- */
-class D2in1 extends D {
-	private static final D2in1 staticThis = new D2in1();
-
-	static Token p() {
-		return staticThis;
-	}
-
-	private D2in1() {
-		super();
-	}
-
-	MSG parse(String instruction, int pos, Arguments a) {
-		MSG msg = super.parse(instruction, pos, a);
-		if (!msg.isError()) {
-			int parsed = a.getRegisterIndexes().get(a.getRegisterIndexes().size() - 1);
-			a.getRegisterIndexes().add(parsed);
-		}
-		return msg;
-	}
-}
-
-/**
  * For internal use only.
  */
 class GeneralSubregister extends Token {

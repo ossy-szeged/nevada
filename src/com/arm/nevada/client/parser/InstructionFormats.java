@@ -73,27 +73,19 @@ public class InstructionFormats {
 			//ARITHMETIC2
 			//vadd int
 			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.QUAD), AllI.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.QUAD), AllI.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.DOUBLE), AllI.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.DOUBLE), AllI.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vadd float
 			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.QUAD), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vadd, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vsub int
 			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.QUAD), AllI.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.QUAD), AllI.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.DOUBLE), AllI.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.DOUBLE), AllI.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vsub float
 			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.QUAD), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vsub, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vaddhn
 			append(new ArithmeticInstructions(EnumInstruction.vaddhn, EnumRegisterType.DOUBLE), I16.p(), Space.p(), D.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
@@ -111,9 +103,7 @@ public class InstructionFormats {
 			
 			//vaddw
 			append(new ArithmeticInstructions(EnumInstruction.vaddw, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vaddw, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), D.p());
 			append(new ArithmeticInstructions(EnumInstruction.vaddw, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vaddw, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), D.p());
 
 			//vsubl
 			append(new ArithmeticInstructions(EnumInstruction.vsubl, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), D.p(), Comma.p(), D.p());
@@ -121,29 +111,19 @@ public class InstructionFormats {
 			
 			//vsubw
 			append(new ArithmeticInstructions(EnumInstruction.vsubw, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vsubw, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), D.p());
 			append(new ArithmeticInstructions(EnumInstruction.vsubw, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vsubw, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), D.p());
 			
 			//vhadd
 			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhadd, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vhsub
 			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vhsub, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vpadal
 			append(new ArithmeticInstructions(EnumInstruction.vpadal, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p());
@@ -153,11 +133,9 @@ public class InstructionFormats {
 			
 			//vpadd integer
 			append(new ArithmeticInstructions(EnumInstruction.vpadd, EnumRegisterType.DOUBLE), AllISingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vpadd, EnumRegisterType.DOUBLE), AllISingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vpadd float
 			append(new ArithmeticInstructions(EnumInstruction.vpadd, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vpadd, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vpaddl
 			append(new ArithmeticInstructions(EnumInstruction.vpaddl, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p());
@@ -177,100 +155,66 @@ public class InstructionFormats {
 			
 			//vrhadd
 			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vrhadd, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vqadd
 			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.QUAD), AllS.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.QUAD), AllS.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.QUAD), AllU.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.QUAD), AllU.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.DOUBLE), AllS.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.DOUBLE), AllS.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.DOUBLE), AllU.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqadd, EnumRegisterType.DOUBLE), AllU.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vqsub
 			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.QUAD), AllS.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.QUAD), AllS.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.QUAD), AllU.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.QUAD), AllU.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.DOUBLE), AllS.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.DOUBLE), AllS.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.DOUBLE), AllU.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ArithmeticInstructions(EnumInstruction.vqsub, EnumRegisterType.DOUBLE), AllU.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//LOGICAL2
 			//vand register
 			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vand immediate
 			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.QUAD, true), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), ImmVbic.p());
-			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.QUAD, true), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), ImmVbic.p());
 			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.DOUBLE, true), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), ImmVbic.p());
-			append(new LogicalInstruction(EnumInstruction.vand, EnumRegisterType.DOUBLE, true), OptType.p(), Space.p(), D2in1.p(), Comma.p(), ImmVbic.p());
 			
 			//vbic immediate
 			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.QUAD, true), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), ImmVbic.p());
-			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.QUAD, true), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), ImmVbic.p());
 			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.DOUBLE, true), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), ImmVbic.p());
-			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.DOUBLE, true), OptType.p(), Space.p(), D2in1.p(), Comma.p(), ImmVbic.p());
 			
 			//vbic register
 			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.vbic, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//veor register
 			append(new LogicalInstruction(EnumInstruction.veor, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.veor, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.veor, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.veor, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vbif register
 			append(new LogicalInstruction(EnumInstruction.vbif, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.vbif, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.vbif, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.vbif, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vbit register
 			append(new LogicalInstruction(EnumInstruction.vbit, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.vbit, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.vbit, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.vbit, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vbsl register
 			append(new LogicalInstruction(EnumInstruction.vbsl, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.vbsl, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.vbsl, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.vbsl, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vorr register
 			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vorr immediate
 			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.QUAD, true), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), ImmVorr.p());
-			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.QUAD, true), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), ImmVorr.p());
 			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.DOUBLE, true), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), ImmVorr.p());
-			append(new LogicalInstruction(EnumInstruction.vorr, EnumRegisterType.DOUBLE, true), OptType.p(), Space.p(), D2in1.p(), Comma.p(), ImmVorr.p());
 			
 			//vorn register
 			append(new LogicalInstruction(EnumInstruction.vorn, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new LogicalInstruction(EnumInstruction.vorn, EnumRegisterType.QUAD, false), OptType.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new LogicalInstruction(EnumInstruction.vorn, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new LogicalInstruction(EnumInstruction.vorn, EnumRegisterType.DOUBLE, false), OptType.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 
 			//MOVE
 			// special vmov
@@ -610,13 +554,9 @@ public class InstructionFormats {
 			//SHIFT instructions
 			//vqrshl
 			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.QUAD, false), AllU.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.QUAD, false), AllU.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.DOUBLE, false), AllU.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.DOUBLE, false), AllU.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.QUAD, false), AllS.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.QUAD, false), AllS.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.DOUBLE, false), AllS.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ShiftInstruction(EnumInstruction.vqrshl, EnumRegisterType.DOUBLE, false), AllS.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vshl
 			append(new ShiftInstruction(EnumInstruction.vshl, EnumRegisterType.DOUBLE, true), AllI.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), Imm0toSizeMinus1.p());
@@ -722,13 +662,9 @@ public class InstructionFormats {
 			
 			//VQSHL{u}
 			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.QUAD, false), AllS.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.QUAD, false), AllS.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.QUAD, false), AllU.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.QUAD, false), AllU.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.DOUBLE, false), AllS.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.DOUBLE, false), AllS.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.DOUBLE, false), AllU.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.DOUBLE, false), AllU.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.DOUBLE, true), AllS.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), Imm0toSizeMinus1.p());
 			append(new ShiftInstruction(EnumInstruction.vqshl, EnumRegisterType.QUAD, true), AllS.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Imm0toSizeMinus1.p());
@@ -903,58 +839,36 @@ public class InstructionFormats {
 			// Multiply instructions
 			//VMLA
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 						
 			
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), AllISingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), AllISingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, false), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, false), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());		
 
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), U16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), U32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), U16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), U32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), U16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), U32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), U16.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), U32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), I16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), I32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), I16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), I32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), I16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), I32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), I16.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), I32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.QUAD, true), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmla, EnumRegisterType.DOUBLE, true), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-						
+					
 			
 			//VMLAL
 			append(new MultiplyInstruction(EnumInstruction.vmlal, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), D.p(), Comma.p(), D.p());
@@ -972,59 +886,36 @@ public class InstructionFormats {
 			
 			append(new MultiplyInstruction(EnumInstruction.vmlal, EnumRegisterType.QUAD, true), F32.p(), Space.p(), Q.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			
-			
 			// VMLS
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), AllISingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), AllISingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, false), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, false), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());		
 
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), U16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), U32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), U16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), U32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), U16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), U32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), U16.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), U32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), I16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), I32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), I16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), I32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), I16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), I32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), I16.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), I32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.QUAD, true), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmls, EnumRegisterType.DOUBLE, true), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			
 			//VMLSL
 			append(new MultiplyInstruction(EnumInstruction.vmlsl, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), D.p(), Comma.p(), D.p());
@@ -1045,53 +936,30 @@ public class InstructionFormats {
 			// VMUL
 			//quad
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllP.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllP.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I32.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U32.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), F32.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
 			
 			//double
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), AllISingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, false), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I16.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), I32.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S16.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), S32.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U16.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), U32.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vmul, EnumRegisterType.QUAD, true), F32.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			
 			// VMULL
 			append(new MultiplyInstruction(EnumInstruction.vmull, EnumRegisterType.QUAD, false), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), D.p(), Comma.p(), D.p());
@@ -1125,21 +993,11 @@ public class InstructionFormats {
 			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.QUAD, false), S16.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.QUAD, false), S32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			
 			//double
 			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, false), S16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, false), S32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
-			
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, false), S16.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, false), S32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vqdmulh, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			
 			// vqrdmulh
 			//quad type
@@ -1148,21 +1006,12 @@ public class InstructionFormats {
 			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), DsubRegForScalar.p());
 			
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.QUAD, false), S16.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.QUAD, false), S32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.QUAD, true), S16.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.QUAD, true), S32.p(), Space.p(), Q2in1.p(), Comma.p(), DsubRegForScalar.p());
-			
 			//double
 			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, false), S16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, false), S32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
 			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), DsubRegForScalar.p());
 			
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, false), S16.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, false), S32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, true), S16.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
-			append(new MultiplyInstruction(EnumInstruction.vqrdmulh, EnumRegisterType.DOUBLE, true), S32.p(), Space.p(), D2in1.p(), Comma.p(), DsubRegForScalar.p());
 			
 			// VQDMULL
 			append(new MultiplyInstruction(EnumInstruction.vqdmull, EnumRegisterType.QUAD, false), S16.p(), Space.p(), Q.p(), Comma.p(), D.p(), Comma.p(), D.p());
@@ -1317,57 +1166,36 @@ public class InstructionFormats {
 			//MINIMUM AND MAXIMUM INSTRUCTION
 			//vmin
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.QUAD), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmin, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vmax
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.QUAD), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vmax, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vpmin
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.QUAD), AllUnsignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.QUAD), AllSignedSingle.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.QUAD), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmin, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vpmax
 			// there is NO QUAD version!
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmax, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmax, EnumRegisterType.DOUBLE), AllUnsignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmax, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmax, EnumRegisterType.DOUBLE), AllSignedSingle.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmax, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new MinimumAndMaximumInstruction(EnumInstruction.vpmax, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//RECIPROCAL ESTIMATE
 			append(new ReciprocalSqrtReciprocalEstimate(EnumInstruction.vrecpe, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p());
@@ -1385,22 +1213,16 @@ public class InstructionFormats {
 			//RECIPROCAL (SQUARE ROOT) STEP
 			//vrsqrts
 			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrsqrts, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrsqrts, EnumRegisterType.QUAD), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrsqrts, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrsqrts, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//vrecps
 			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrecps, EnumRegisterType.QUAD), F32.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p());
-			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrecps, EnumRegisterType.QUAD), F32.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p());
 			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrecps, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p());
-			append(new ReciprocalSqrtReciprocalStep(EnumInstruction.vrecps, EnumRegisterType.DOUBLE), F32.p(), Space.p(), D2in1.p(), Comma.p(), D.p());
 			
 			//EXTRACT
 			//vext
 			append(new VextInstruction(EnumInstruction.vext, EnumRegisterType.QUAD), All.p(), Space.p(), Q.p(), Comma.p(), Q.p(), Comma.p(), Q.p() , Comma.p(), ImmTimesDtDividedBy8IsMax15.p());
 			append(new VextInstruction(EnumInstruction.vext, EnumRegisterType.DOUBLE), All.p(), Space.p(), D.p(), Comma.p(), D.p(), Comma.p(), D.p() , Comma.p(), ImmTimesDtDividedBy8IsMax7.p());
-			append(new VextInstruction(EnumInstruction.vext, EnumRegisterType.QUAD), All.p(), Space.p(), Q2in1.p(), Comma.p(), Q.p(), Comma.p(), ImmTimesDtDividedBy8IsMax15.p());
-			append(new VextInstruction(EnumInstruction.vext, EnumRegisterType.DOUBLE), All.p(), Space.p(), D2in1.p(), Comma.p(), D.p(), Comma.p(), ImmTimesDtDividedBy8IsMax7.p());
 			
 			//VMRS and VMSR
 			append(new MoveFPSCAndRAPSR(EnumInstruction.vmrs), Space.p(), R.p(), Comma.p(), FPSCR.p());
