@@ -53,6 +53,9 @@ public class MultiplyInstruction extends Instruction {
 	private EnumRegisterType destRegisterType;
 	private EnumRegisterType sourceRegisterType;
 	private Integer source2RegisterIndex;
+	
+	// TODO: set it for float mnemonics
+	private boolean floatType = false;
 
 	public MultiplyInstruction(EnumInstruction instruction, EnumRegisterType destRegisterType, boolean scalar) {
 		this.instruction = instruction;
@@ -132,9 +135,9 @@ public class MultiplyInstruction extends Instruction {
 			this.subRegisterIndex = arguments.getSubRegisterIndex();
 		}
 		
-		this.destinationRegisterIndex = arguments.getRegisterIndexes().get(0);
-		this.source1RegisterIndex = arguments.getRegisterIndexes().get(1);
-		this.source2RegisterIndex = arguments.getRegisterIndexes().get(2);
+		this.destinationRegisterIndex = arguments.getRegisterIndex(0);
+		this.source1RegisterIndex = arguments.getRegisterIndex(1);
+		this.source2RegisterIndex = arguments.getRegisterIndex(2);
 	}
 
 	@Override
@@ -156,7 +159,7 @@ public class MultiplyInstruction extends Instruction {
 		}
 
 		int[] resultWords;
-		if (dataType.isFloatType()) {
+		if (floatType) {
 			int[] results = new int[op1s.length];
 			for (int i = 0; i < op1s.length; i++) {
 				float op1 = DataTypeTools.intToFloat(op1s[i]);
@@ -192,7 +195,7 @@ public class MultiplyInstruction extends Instruction {
 			}
 			resultWords = DataTypeTools.createWordsFromOnePartPerLong(outSize, results);
 		}
-		neonRS.setRegisterValues(destRegisterType, true, destinationRegisterIndex, resultWords);
+		neonRS.setRegisterValues(destRegisterType, false, destinationRegisterIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightDestinationRegisters(machine);
 	}
@@ -294,7 +297,7 @@ public class MultiplyInstruction extends Instruction {
 		assert !saturating;
 		assert !rounding;
 		assert !highHalf;
-		assert dataType.isFloatType();
+		assert floatType;
 
 		float out = op1 * op2;
 		if (accumulate)

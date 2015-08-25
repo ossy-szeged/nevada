@@ -27,7 +27,7 @@
 package com.arm.nevada.client.parser;
 
 public enum EnumRegisterType {
-	SINGLE(32), DOUBLE(64), QUAD(128), CORE(32), LITERAL(-1);
+	BYTE(8), HALF(16), SINGLE(32), DOUBLE(64), QUAD(128), CORE(32), LITERAL(-1);
 
 	private final int size;
 

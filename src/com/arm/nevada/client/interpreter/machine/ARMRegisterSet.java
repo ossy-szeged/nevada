@@ -39,7 +39,7 @@ public class ARMRegisterSet extends Storage implements ARMRegisterValueChangedEv
 	private static final Logger logger = Logger.getLogger(ARMRegisterSet.class.getName());
 
 	public ARMRegisterSet(final EventBus eventBus) {
-		super(16, eventBus);
+		super(33, eventBus);
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class ARMRegisterSet extends Storage implements ARMRegisterValueChangedEv
 	@Override
 	public void setOneValue(int index, int value, boolean fireEvent) {
 		super.setOneValue(index, value, fireEvent);
-		if (index == ARMRegister.R15.getIndex()) {
+		if (index == ARMRegister.R32.getIndex()) {
 			fireEvent(new ProgramCounterChangedEvenet(value));
 		}
 	}
@@ -61,7 +61,7 @@ public class ARMRegisterSet extends Storage implements ARMRegisterValueChangedEv
 	@Override
 	protected void fireValueChanged(int index, int value) {
 		ARMRegisterValueChangedEvent forwardEvent = new ARMRegisterValueChangedEvent(index, value);
-		if (index == ARMRegister.R15.getIndex()){
+		if (index == ARMRegister.R32.getIndex()){
 			ProgramCounterChangedEvenet PCChanged = new ProgramCounterChangedEvenet(value);
 			fireEvent(PCChanged);
 		}

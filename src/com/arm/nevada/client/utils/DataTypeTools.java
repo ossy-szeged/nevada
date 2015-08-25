@@ -26,6 +26,8 @@
 
 package com.arm.nevada.client.utils;
 
+import java.util.Arrays;
+
 import com.arm.nevada.client.parser.EnumInstruction;
 import com.arm.nevada.client.shared.Out;
 
@@ -160,6 +162,15 @@ public class DataTypeTools extends FloatingDataTypeTools {
 			for (int i = 0; i < out32.length; i++) {
 				out[i] = LongFromIntegers(out32[i], 0);
 			}
+		}
+		return out;
+	}
+	
+	public static long[] keepOnlyTheSecondPart(long[] in) {
+		//return Arrays.copyOfRange(in, in.length/2, in.length);
+		long[] out = new long[(in.length+1)/2];
+		for (int i=0; i<out.length; i++) {
+			out[i] = in[in.length/2 + i];
 		}
 		return out;
 	}
@@ -372,9 +383,9 @@ public class DataTypeTools extends FloatingDataTypeTools {
 
 	public static boolean isAdvSIMDExpandImm(long value, EnumInstruction inst) {
 		EnumInstruction VMOV = EnumInstruction.vmov;
-		EnumInstruction VORR = EnumInstruction.vorr;
+		EnumInstruction VORR = EnumInstruction.orr;
 		EnumInstruction VMVN = EnumInstruction.vmvn;
-		EnumInstruction VBIC = EnumInstruction.vbic;
+		EnumInstruction VBIC = EnumInstruction.bic;
 		assert inst == VMOV || inst == VORR || inst == VMVN || inst == VBIC;
 
 		int[] parts32 = integerFromLong(value);

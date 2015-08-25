@@ -84,6 +84,7 @@ public class Parser {
 			}
 			if (current.getPosition() >= 0 && current.getPosition() == line.length()) {
 				parsedForm = form;
+				// TODO: check the arguments: for example - 3 same typed vector, ...
 				break;
 			}
 		}
@@ -91,6 +92,15 @@ public class Parser {
 			logger.log(Level.FINE, "Can't parse line: " + line);
 			ErrorInstruction out = new ErrorInstruction(best.getMessage(), best.getBestParsedPos(), line);
 			return out;
+		}
+
+		if ( (parsedForm.getInstructionTemplate().validArgumentListTypes != null) &&
+			 (!arguments.validateVectorRegisterTypes(parsedForm.getInstructionTemplate().validArgumentListTypes))) {
+			logger.log(Level.FINE, "Invalid argument list in line: " + line);
+			String errorText = "Invalid argument list in line: " + line.substring(0, pos);
+			ErrorInstruction out = new ErrorInstruction(errorText, 0, line);
+			return out;
+
 		}
 
 		try {

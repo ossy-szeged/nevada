@@ -52,9 +52,9 @@ public class ReciprocalSqrtReciprocalStep extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.destinationIndex = arguments.getRegisterIndexes().get(0);
-		this.source1Index = arguments.getRegisterIndexes().get(1);
-		this.source2Index = arguments.getRegisterIndexes().get(2);
+		this.destinationIndex = arguments.getRegisterIndex(0);
+		this.source1Index = arguments.getRegisterIndex(1);
+		this.source2Index = arguments.getRegisterIndex(2);
 
 		this.size = this.dataType.getSizeInBits();
 	}
@@ -79,7 +79,7 @@ public class ReciprocalSqrtReciprocalStep extends Instruction {
 			assert false;
 
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerWord(size, resultParts);
-		neonRegSet.setRegisterValues(registerType, true, destinationIndex, resultWords);
+		neonRegSet.setRegisterValues(registerType, false, destinationIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}

@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2011, 2012 University of Szeged
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,6 +28,7 @@ package com.arm.nevada.client.interpreter;
 import com.arm.nevada.client.interpreter.machine.Machine;
 import com.arm.nevada.client.interpreter.machine.NEONRegisterSet;
 import com.arm.nevada.client.parser.Arguments;
+import com.arm.nevada.client.parser.EnumArgumentListType;
 import com.arm.nevada.client.parser.EnumInstruction;
 import com.arm.nevada.client.parser.EnumRegisterType;
 import com.arm.nevada.client.shared.Out;
@@ -36,24 +36,24 @@ import com.arm.nevada.client.shared.SpecialBits;
 import com.arm.nevada.client.utils.DataTypeTools;
 
 /*
- vadd,
- vaddhn,
- vaddl,
- vaddw,
- vhadd,
- vhsub,
- vpadal,
- vpadd,
- vpaddl,
- vraddhn,
- vrhadd,
- vrsubhn,
- vqadd,
- vqsub,
- vsub,
- vsubhn,
- vsubl,
- vsubw,
+ add,
+ addhn,
+ addl,
+ addw,
+ hadd,
+ hsub,
+ padal,
+ padd,
+ paddl,
+ raddhn,
+ rhadd,
+ rsubhn,
+ qadd,
+ qsub,
+ sub,
+ subhn,
+ subl,
+ subw,
  */
 public class ArithmeticInstructions extends Instruction {
 
@@ -76,97 +76,280 @@ public class ArithmeticInstructions extends Instruction {
 	private boolean rounding = false;
 	private boolean saturating = false;
 
+	private boolean floatType = false;
+	private boolean signed = false;
+	private boolean secondPart = false;
+	
 	private int source1Size;
 	private int source2Size;
 	private int destSize;
-
 	
-	public ArithmeticInstructions(EnumInstruction instruction, EnumRegisterType destRegisterType){
+	public ArithmeticInstructions(EnumInstruction instruction){
 		this.instruction = instruction;
-		this.destinationRegisterType = destRegisterType;
-		
 		initializeFlags();
 	}
 
 	private void initializeFlags() {
 		switch (instruction) {
-		case vadd:
+
+		case add:
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHSD; 
 			break;
-		case vaddhn:
+		case fadd:
+			addElseSub = true;
+			floatType = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterFloat;
+			break;
+		case addhn:
 			addElseSub = true;
 			narrowAndHighHalf = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHN;
 			break;
-		case vaddl:
+		case addhn2:
+			addElseSub = true;
+			narrowAndHighHalf = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHNSP;
+			break;
+		case uaddl:
 			longing = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForL;
 			break;
-		case vaddw:
+		case uaddl2:
+			longing = true;
+			addElseSub = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLSP;
+			break;
+		case saddl:
+			longing = true;
+			addElseSub = true;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForL;
+			break;
+		case saddl2:
+			longing = true;
+			addElseSub = true;
+			signed = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLSP;
+			break;
+		case uaddw:
 			wide = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForW;
 			break;
-		case vhadd:
+		case uaddw2:
+			wide = true;
+			addElseSub = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForWSP;
+			break;
+		case saddw:
+			wide = true;
+			addElseSub = true;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForW;
+			break;
+		case saddw2:
+			wide = true;
+			addElseSub = true;
+			signed = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForWSP;
+			break;
+		case uhadd:
 			halving = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHS; 
 			break;
-		case vhsub:
+		case shadd:
+			halving = true;
+			addElseSub = true;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHS;
+			break;
+		case uhsub:
 			halving = true;
 			addElseSub = false;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHS;
 			break;
-		case vpadal:
+		case shsub:
+			halving = true;
+			addElseSub = false;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHS;
+			break;
+		case uadalp:
 			pairwise = true;
 			accumulate = true;
 			longing = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLP;
 			break;
-		case vpadd:
+		case sadalp:
+			pairwise = true;
+			accumulate = true;
+			longing = true;
+			addElseSub = true;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLP;
+			break;
+		case addp:
 			pairwise = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHSD; 
 			break;
-		case vpaddl:
+		case faddp:
+			pairwise = true;
+			addElseSub = true;
+			floatType = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterFloat;
+			break;
+		case uaddlp:
 			pairwise = true;
 			longing = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLP;
 			break;
-		case vraddhn:
+		case saddlp:
+			pairwise = true;
+			longing = true;
+			addElseSub = true;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLP;
+			break;
+		case raddhn:
 			rounding = true;
 			narrowAndHighHalf = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHN;
 			break;
-		case vrhadd:
+		case raddhn2:
+			rounding = true;
+			narrowAndHighHalf = true;
+			addElseSub = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHNSP;
+			break;
+		case urhadd:
 			rounding = true;
 			halving = true;
 			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHS;
 			break;
-		case vrsubhn:
+		case srhadd:
+			rounding = true;
+			halving = true;
+			addElseSub = true;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHS;
+			break;
+		case rsubhn:
 			rounding = true;
 			narrowAndHighHalf = true;
 			addElseSub = false;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHN;
 			break;
-		case vqadd:
-			saturating = true;
-			addElseSub = true;
-			break;
-		case vqsub:
-			saturating = true;
-			addElseSub = false;
-			break;
-		case vsub:
-			addElseSub = false;
-			break;
-		case vsubhn:
+		case rsubhn2:
+			rounding = true;
 			narrowAndHighHalf = true;
 			addElseSub = false;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHNSP;
 			break;
-		case vsubl:
+		case uqadd:
+			saturating = true;
+			addElseSub = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHSD; 
+			break;
+		case sqadd:
+			saturating = true;
+			addElseSub = true;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHSD; 
+			break;
+		case uqsub:
+			saturating = true;
+			addElseSub = false;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHSD; 
+			break;
+		case sqsub:
+			saturating = true;
+			addElseSub = false;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHSD; 
+			break;
+		case sub:
+			addElseSub = false;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterBHSD; 
+			break;
+		case fsub:
+			addElseSub = false;
+			floatType = true;
+			validArgumentListTypes = EnumArgumentListType.threeSameVectorRegisterFloat;
+			break;
+		case subhn:
+			narrowAndHighHalf = true;
+			addElseSub = false;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHN;
+			break;
+		case subhn2:
+			narrowAndHighHalf = true;
+			addElseSub = false;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForHNSP;
+			break;
+		case usubl:
 			longing = true;
 			addElseSub = false;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForL;
 			break;
-		case vsubw:
+		case usubl2:
+			longing = true;
+			addElseSub = false;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLSP;
+			break;
+		case ssubl:
+			longing = true;
+			addElseSub = false;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForL;
+			break;
+		case ssubl2:
+			longing = true;
+			addElseSub = false;
+			signed = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForLSP;
+			break;
+		case usubw:
 			wide = true;
 			addElseSub = false;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForW;
 			break;
-
+		case usubw2:
+			wide = true;
+			addElseSub = false;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForWSP;
+			break;
+		case ssubw:
+			wide = true;
+			addElseSub = false;
+			signed = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForW;
+			break;
+		case ssubw2:
+			wide = true;
+			addElseSub = false;
+			signed = true;
+			secondPart = true;
+			validArgumentListTypes = EnumArgumentListType.validArgumentsForWSP;
+			break;
 		default:
 			assert false : "invalid instruction";
 			break;
@@ -177,17 +360,37 @@ public class ArithmeticInstructions extends Instruction {
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
 		
-		if (arguments.getRegisterIndexes().size() > 2) {
-			this.destionationIndex = arguments.getRegisterIndexes().get(0);
-			this.source1Index = arguments.getRegisterIndexes().get(1);
-			this.source2Index = arguments.getRegisterIndexes().get(2);
+		//int x = arguments.getVectorRegisterType(0).getElementSizeInBytes();
+		int x = arguments.getVectorRegisterType(0).getVectorSizeInBytes();
+		if ( x == 8) {
+			this.destinationRegisterType = EnumRegisterType.DOUBLE;
+		} else if ( x == 16) {
+			this.destinationRegisterType = EnumRegisterType.QUAD;
+		}
+		
+		// TODO: remove the else case, explicit destination register is mandatory now!
+		// but be careful: longing + pairwise instructions have only one source argument
+		if (arguments.size() > 2) {
+			this.destionationIndex = arguments.getRegisterIndex(0);
+			this.source1Index = arguments.getRegisterIndex(1);
+			this.source2Index = arguments.getRegisterIndex(2);
 		} else {
-			this.destionationIndex = arguments.getRegisterIndexes().get(0);
-			this.source1Index = arguments.getRegisterIndexes().get(0);
-			this.source2Index = arguments.getRegisterIndexes().get(1);
+			this.destionationIndex = arguments.getRegisterIndex(0);
+			this.source1Index = arguments.getRegisterIndex(0);
+			this.source2Index = arguments.getRegisterIndex(1);
 		}
 
-		source2Size = dataType.getSizeInBits();
+		//source2Size = dataType.getSizeInBits();
+		// FIXME: sok esetben nem jó!
+		//source2Size = arguments.getVectorRegisterType(1).getElementSizeInBits();
+
+		// FIXME: dirty hack for <u|s>adalp and <u|s>addlp (there is only 1 argument)
+		if (!(longing && pairwise)){
+			source2Size = arguments.getVectorRegisterType(2).getElementSizeInBits();
+		} else {
+			source2Size = arguments.getVectorRegisterType(1).getElementSizeInBits();
+		}
+		
 		if (narrowAndHighHalf) {
 			source1RegisterType = EnumRegisterType.QUAD;
 			source2RegisterType = EnumRegisterType.QUAD;
@@ -195,7 +398,13 @@ public class ArithmeticInstructions extends Instruction {
 			destSize = source2Size / 2;
 		} else if (wide) {
 			source1RegisterType = EnumRegisterType.QUAD;
-			source2RegisterType = EnumRegisterType.DOUBLE;
+			
+			if (secondPart) {
+				source2RegisterType = EnumRegisterType.QUAD;
+			} else {
+				source2RegisterType = EnumRegisterType.DOUBLE; // FIXME: second part esetén QUAD, de csak a felso DOUBLE kell belole :-/
+			}
+			 
 			source1Size = source2Size * 2;
 			destSize = source2Size * 2;
 		} else if (longing) {
@@ -227,6 +436,17 @@ public class ArithmeticInstructions extends Instruction {
 		long[] destParts = DataTypeTools.createPartListFromWordsLong(destSize,
 				neonRS.getRegisterValues(destinationRegisterType, destionationIndex));
 
+		if (secondPart) {
+			if (wide){
+				source2Parts = DataTypeTools.keepOnlyTheSecondPart(source2Parts);
+			} else if (longing) {
+				source1Parts = DataTypeTools.keepOnlyTheSecondPart(source1Parts);
+				source2Parts = DataTypeTools.keepOnlyTheSecondPart(source2Parts);
+			} else if (narrowAndHighHalf) {
+				destParts = DataTypeTools.keepOnlyTheSecondPart(destParts);
+			}
+		}
+		
 		if (pairwise) {
 			long[] s1p;
 			long[] s2p;
@@ -256,7 +476,7 @@ public class ArithmeticInstructions extends Instruction {
 
 		assert source1Parts.length == source2Parts.length && source1Parts.length == destParts.length;
 
-		if (dataType.isFloatType()) {
+		if (floatType) {
 			for (int i = 0; i < destParts.length; i++) {
 				destParts[i] = calculateFloat(source1Parts[i], source2Parts[i], destParts[i]);
 			}
@@ -265,10 +485,16 @@ public class ArithmeticInstructions extends Instruction {
 				destParts[i] = calculateInt(source1Parts[i], source2Parts[i], destParts[i], machine);
 			}
 		}
+		
+		//FIXME: if secondPart && narrowAndHighHalf - felso 64 bitet kell irni!
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerLong(destSize, destParts);
-		neonRS.setRegisterValues(destinationRegisterType, true, destionationIndex, resultWords);
+		neonRS.setRegisterValues(destinationRegisterType, (narrowAndHighHalf && secondPart), destionationIndex, resultWords);
 		machine.incrementPCBy4();
-		highlightDestinationRegisters(machine);
+		if (narrowAndHighHalf && secondPart){
+			machine.highlightNEONRegisterSecondPart(destinationRegisterType, destionationIndex);
+		} else {
+			highlightDestinationRegisters(machine);	
+		}
 	}
 
 	private void highlightDestinationRegisters(Machine machine) {
@@ -288,7 +514,7 @@ public class ArithmeticInstructions extends Instruction {
 		// boolean saturating = false;
 
 		long result = 0;
-		boolean signed = dataType.getSigned() == null || dataType.getSigned() == false ? false : true;
+		
 		if (signed) {
 			s1 = DataTypeTools.extendToSingnedLong(s1, source1Size);
 			s2 = DataTypeTools.extendToSingnedLong(s2, source2Size);
@@ -336,7 +562,7 @@ public class ArithmeticInstructions extends Instruction {
 
 		if (saturating) {
 			Out<Boolean> saturated = new Out<Boolean>();
-			result = saturatingAddOrSubstract(s1, s2, destSize, saturated, addElseSub, signed);
+			result = saturatingAddOrSubstract(s1, s2, destSize, saturated, addElseSub);
 			if (saturated.getValue()) {
 				int fpscr = machine.getSpecialRegisters().getFPSCR();
 				fpscr = DataTypeTools.setBit(fpscr, true, SpecialBits.FPSCR_QC);
@@ -363,7 +589,7 @@ public class ArithmeticInstructions extends Instruction {
 		return longResult;
 	}
 
-	private long saturatingAddOrSubstract(long x, long y, int size, Out<Boolean> saturated, boolean addElseSub, boolean signed) {
+	private long saturatingAddOrSubstract(long x, long y, int size, Out<Boolean> saturated, boolean addElseSub) {
 		if (signed)
 			if (addElseSub)
 				return saturatingAddSigned(x, y, size, saturated);
@@ -451,7 +677,7 @@ public class ArithmeticInstructions extends Instruction {
 
 	@Override
 	public Instruction create() {
-		return new ArithmeticInstructions(this.instruction, this.destinationRegisterType);
+		return new ArithmeticInstructions(this.instruction);
 	}
 
 	@Override

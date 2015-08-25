@@ -79,7 +79,7 @@ public class MemorySet extends Composite implements
 
 	private EventBus eventBus;
 	// mod 16 byte == 0
-	private int memorySizeinWords = 32;
+	private int memorySizeinWords = 64;
 	// 16byte aligned
 	private int offsetInWords = 0;
 

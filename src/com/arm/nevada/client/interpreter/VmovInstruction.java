@@ -62,27 +62,27 @@ public class VmovInstruction extends Instruction {
 	@Override
 	public void execute(Machine machine) {
 		int from = -1;
-		int to = arguments.getRegisterIndexes().get(0);
-		if (arguments.getRegisterIndexes().size() >= 2)
-			from = arguments.getRegisterIndexes().get(1);
+		int to = arguments.getRegisterIndex(0);
+		if (arguments.size() >= 2)
+			from = arguments.getRegisterIndex(1);
 		EnumDataType dataType = arguments.getType();
 		// int typeSize = arguments.getType().getSizeInBits();
 		switch (mode) {
 		case ARM_TO_D:
 			// VMOV<c><q> <Dm>, <Rt>, <Rt2>
 			int[] ARMValues = new int[2];
-			ARMValues[0] = machine.getArmRegisterSet().getOneValue(arguments.getRegisterIndexes().get(1));
-			ARMValues[1] = machine.getArmRegisterSet().getOneValue(arguments.getRegisterIndexes().get(2));
+			ARMValues[0] = machine.getArmRegisterSet().getOneValue(arguments.getRegisterIndex(1));
+			ARMValues[1] = machine.getArmRegisterSet().getOneValue(arguments.getRegisterIndex(2));
 			machine.getNEONRegisterSet().setDouble(to, true, ARMValues);
 			machine.highlightNEONRegister(EnumRegisterType.DOUBLE, to);
 			break;
 		case D_TO_ARM:
 			// VMOV<c><q> <Rt>, <Rt2>, <Dm>
-			int[] doubleValue = machine.getNEONRegisterSet().getDouble(arguments.getRegisterIndexes().get(2));
-			machine.getArmRegisterSet().setOneValue(arguments.getRegisterIndexes().get(0), doubleValue[0], true);
-			machine.getArmRegisterSet().setOneValue(arguments.getRegisterIndexes().get(1), doubleValue[1], true);
-			machine.highlightARMRegister(arguments.getRegisterIndexes().get(0));
-			machine.highlightARMRegister(arguments.getRegisterIndexes().get(1));
+			int[] doubleValue = machine.getNEONRegisterSet().getDouble(arguments.getRegisterIndex(2));
+			machine.getArmRegisterSet().setOneValue(arguments.getRegisterIndex(0), doubleValue[0], true);
+			machine.getArmRegisterSet().setOneValue(arguments.getRegisterIndex(1), doubleValue[1], true);
+			machine.highlightARMRegister(arguments.getRegisterIndex(0));
+			machine.highlightARMRegister(arguments.getRegisterIndex(1));
 			break;
 		case ARM_TO_DSUB:
 			// VMOV<c>{.<size>} <Dd[x]>, <Rt>
@@ -109,6 +109,10 @@ public class VmovInstruction extends Instruction {
 			machine.getArmRegisterSet().setOneValue(to, subValue, true);
 			machine.highlightARMRegister(to);
 			break;
+		case IMM_TO_D:
+			assert false;
+		case IMM_TO_Q:
+			assert false;
 		}
 		machine.incrementPCBy4();
 	}

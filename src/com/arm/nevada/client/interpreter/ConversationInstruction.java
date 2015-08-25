@@ -64,8 +64,8 @@ public class ConversationInstruction extends Instruction {
 		else {
 			sourceRegisterType = destinationRegisterType;
 		}
-		destinationIndex = arguments.getRegisterIndexes().get(0);
-		sourceIndex = arguments.getRegisterIndexes().get(1);
+		destinationIndex = arguments.getRegisterIndex(0);
+		sourceIndex = arguments.getRegisterIndex(1);
 
 		if (fixed) {
 			fractionBitCount = (int) arguments.getImmediateValue();
@@ -123,7 +123,7 @@ public class ConversationInstruction extends Instruction {
 		}
 
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerWord(resultSize, resultParts);
-		neonRegSet.setRegisterValues(destinationRegisterType, true, destinationIndex, resultWords);
+		neonRegSet.setRegisterValues(destinationRegisterType, false, destinationIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 

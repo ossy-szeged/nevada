@@ -101,21 +101,14 @@ public class InstructionEditor extends Composite implements
 		this.setEventbus(eventBus);
 		setEditMode(true);
 		setSelectedInstruction(0);
-		addCommandLine("vadd.u8 q0, q1, q2");
-		addCommandLine("vsub.8 q15, q2, q3");
-		addCommandLine("vsub.s16 q13, q2, q3");
-		addCommandLine("vsub.i16 d15, d2, d3");
-		addCommandLine("vadd.i32 q0, q4, q5");
-		addCommandLine("vand q0, q1, q2");
-		addCommandLine("vand.u32 q0, q1, q2");
-		addCommandLine("vand  q15, q14");
-		addCommandLine("vorr q0, q14, q15");
-		addCommandLine("vbic d5, d6, d14");
-		addCommandLine("vand  d29, d28, d30");
-		addCommandLine("vmov r1, r10, d22");
-		addCommandLine("vmov d24, r1, r10");
-		addCommandLine("vmov d25, d24");
-		addCommandLine("vmov q13, q12");
+		addCommandLine("add v0.8b, v1.8b, v2.8b");
+		addCommandLine("add v0.16b, v1.16b, v2.16b");
+		addCommandLine("addhn2 v0.16b, v1.8h, v2.8h");
+		addCommandLine("uadalp v0.4h, v1.8b");
+		addCommandLine("add v0.8b, v1.8b, v2.8b");
+		addCommandLine("uaddlp v0.4h, v1.8b");
+		addCommandLine("and v0.8b, v1.8b, v2.8b");
+		addCommandLine("bsl v0.16b, v1.16b, v2.16b");
 		setEditMode(false);
 	}
 
@@ -223,7 +216,7 @@ public class InstructionEditor extends Composite implements
 		public void onProgramCounterChanged(ProgramCounterChangedEvenet event) {
 			if (event.getSource() == this)
 				return;
-			ARMRegisterValueChangedEvent RegisterByMachine = new ARMRegisterValueChangedEvent(ARMRegister.R15.getIndex(), event.getNewValue());
+			ARMRegisterValueChangedEvent RegisterByMachine = new ARMRegisterValueChangedEvent(ARMRegister.R32.getIndex(), event.getNewValue());
 			fireEvent(RegisterByMachine);
 		}
 	};

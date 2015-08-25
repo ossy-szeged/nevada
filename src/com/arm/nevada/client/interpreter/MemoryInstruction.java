@@ -95,9 +95,9 @@ public class MemoryInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.doubleStartIndex = arguments.getRegisterIndexes().get(0);
-		this.baseRegisterIndex = arguments.getRegisterIndexes().get(1);
-		this.offsetRegisterIndex = arguments.getRegisterIndexes().size() >= 3 ? arguments.getRegisterIndexes().get(2) : null;
+		this.doubleStartIndex = arguments.getRegisterIndex(0);
+		this.baseRegisterIndex = arguments.getRegisterIndex(1);
+		this.offsetRegisterIndex = arguments.size() >= 3 ? arguments.getRegisterIndex(2) : null;
 		this.subRegisterIndex = arguments.getSubRegisterIndex();
 		this.alignmentInByte = arguments.getAlignmentByte();
 	}
@@ -152,7 +152,8 @@ public class MemoryInstruction extends Instruction {
 			int changedBytes = mode == Mode.ALL ? elementCount * 8 : elementCount * size / 8;
 			machine.highlightMemoryBytes(writeBaseAddress, writeBaseAddress + changedBytes - 1);
 			break;
-
+		default:
+			assert false;
 		} // switch instruction
 
 		if (writeBack) {

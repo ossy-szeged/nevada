@@ -29,6 +29,7 @@ package com.arm.nevada.client.interpreter;
 import com.arm.nevada.client.interpreter.machine.Machine;
 import com.arm.nevada.client.interpreter.machine.NEONRegisterSet;
 import com.arm.nevada.client.parser.Arguments;
+import com.arm.nevada.client.parser.EnumArgumentListType;
 import com.arm.nevada.client.parser.EnumInstruction;
 import com.arm.nevada.client.parser.EnumRegisterType;
 import com.arm.nevada.client.utils.DataTypeTools;
@@ -42,22 +43,29 @@ public class LogicalInstruction extends Instruction {
 	private boolean immediate;
 	private long immedateValue;
 
-	public LogicalInstruction(EnumInstruction instruction, EnumRegisterType destinationRegisterType, boolean immediate) {
+	public LogicalInstruction(EnumInstruction instruction, boolean immediate) {
 		this.instructionName = instruction;
-		this.registerType = destinationRegisterType;
 		this.immediate = immediate;
+		validArgumentListTypes = EnumArgumentListType.validArgumentsForLogicalInstructions;
 	}
 
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.immedateValue = arguments.getImmediateValue();
-		this.destinationIndex = arguments.getRegisterIndexes().get(0);
-		this.source1Index = arguments.getRegisterIndexes().get(1);		
+		this.destinationIndex = arguments.getRegisterIndex(0);
+		this.source1Index = arguments.getRegisterIndex(1);
+
+		int x = arguments.getVectorRegisterType(0).getVectorSizeInBytes();
+		if ( x == 8) {
+			this.registerType = EnumRegisterType.DOUBLE;
+		} else if ( x == 16) {
+			this.registerType = EnumRegisterType.QUAD;
+		}
 		
 		if (this.immediate) {
 			this.source2Index = null;
 		} else {
-			this.source2Index = arguments.getRegisterIndexes().get(2);
+			this.source2Index = arguments.getRegisterIndex(2);
 		}
 	}
 
@@ -83,31 +91,32 @@ public class LogicalInstruction extends Instruction {
 			resultWords[i] = calculate(op1s[i], op2s[i], dests[i]);
 		}
 
-		neonRS.setRegisterValues(registerType, true, destinationIndex, resultWords);
+		neonRS.setRegisterValues(registerType, false, destinationIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightChangedRegisters(machine);
 	}
 
 	private int calculate(int n, int m, int d) {
 		switch (getInstructionName()) {
-		case vand:
+		case and:
 			return n & m;
-		case vbic:
+		case bic:
 			return n & ~m;
-		case vorr:
+		case orr:
 			return n | m;
-		case veor:
+		case eor:
 			return n ^ m;
-		case vorn:
+		case orn:
 			return n | (~m);
-		case vbif:
+		case bif:
 			return (d & m) | (n & ~m);
-		case vbit:
+		case bit:
 			return (n & m) | (d & ~m);
-		case vbsl:
+		case bsl:
 			return (n & d) | (m & ~d);
+		default:
+		    assert false;
 		}
-		assert false;
 		return 0;
 	}
 	
@@ -117,7 +126,7 @@ public class LogicalInstruction extends Instruction {
 
 	@Override
 	public Instruction create() {
-		return new LogicalInstruction(this.instructionName, this.registerType, this.immediate);
+		return new LogicalInstruction(this.instructionName, this.immediate);
 	}
 
 	@Override

@@ -107,10 +107,10 @@ public class AbsoluteAndNegateInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		dataType = arguments.getType();
-		destinationIndex = arguments.getRegisterIndexes().get(0);
-		source1Index = arguments.getRegisterIndexes().get(1);
+		destinationIndex = arguments.getRegisterIndex(0);
+		source1Index = arguments.getRegisterIndex(1);
 		if (difference) {
-			source2Index = arguments.getRegisterIndexes().get(2);
+			source2Index = arguments.getRegisterIndex(2);
 		}
 	}
 
@@ -164,7 +164,7 @@ public class AbsoluteAndNegateInstruction extends Instruction {
 		}
 
 		int[] registerWords = DataTypeTools.createWordsFromOnePartPerWord(size, resultPartList);
-		neonRegSet.setRegisterValues(destinationRegisterType, true, destinationIndex, registerWords);
+		neonRegSet.setRegisterValues(destinationRegisterType, false, destinationIndex, registerWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}
@@ -189,7 +189,8 @@ public class AbsoluteAndNegateInstruction extends Instruction {
 		long result = 0;
 		int size = dataType.getSizeInBits();
 		int outSize = longing ? size * 2 : size;
-		boolean signedInteger = dataType.isInteger() && dataType.getSigned();
+		// FIXME: egyáltalán miért kellett eddig vizsgálni, hogy integer-e?
+		boolean signedInteger = dataType.getSigned();
 
 		long inMask = DataTypeTools.getBitmaskLong(size);
 		long outMask = DataTypeTools.getBitmaskLong(outSize);

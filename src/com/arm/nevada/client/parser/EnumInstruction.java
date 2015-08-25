@@ -27,6 +27,7 @@
 package com.arm.nevada.client.parser;
 
 public enum EnumInstruction {
+/*
 	vand,
 	vbic,
 	veor,
@@ -35,7 +36,19 @@ public enum EnumInstruction {
 	vbsl,
 	vorr,
 	vorn,
-
+*/
+	
+	// begin of AArch64 logical instructions
+	and,
+	bic,
+	bif,
+	bit,
+	bsl,
+	eor,
+	orr,
+	orn,
+	// end of AArch64 logical instruction
+	
 	vmov,
 	vqmovn,
 	vqmovun,
@@ -53,24 +66,73 @@ public enum EnumInstruction {
 	vst3,
 	vst4,
 
-	vadd,
-	vaddhn,
-	vaddl,
-	vaddw,
-	vhadd,
-	vhsub,
-	vpadal,
-	vpadd,
-	vpaddl,
-	vraddhn,
-	vrhadd,
-	vrsubhn,
-	vqadd,
-	vqsub,
-	vsub,
-	vsubhn,
-	vsubl,
-	vsubw,
+	/*
+	add,
+	addhn,
+	addl,
+	addw,
+	hadd,
+	hsub,
+	padal,
+	padd,
+	paddl,
+	raddhn,
+	rhadd,
+	rsubhn,
+	qadd,
+	qsub,
+	sub,
+	subhn,
+	subl,
+	subw,
+*/
+	
+	// begin of AArch64 arithmetic instructions
+	add,
+	fadd,
+	addhn,
+	addhn2,
+	uaddl,
+	uaddl2,
+	saddl,
+	saddl2,
+	uaddw,
+	uaddw2,
+	saddw,
+	saddw2,
+	uhadd,
+	shadd,
+	uhsub,
+	shsub,
+	uadalp,
+	sadalp,
+	addp,
+	faddp,
+	uaddlp,
+	saddlp,
+	raddhn,
+	raddhn2,
+	urhadd,
+	srhadd,
+	rsubhn,
+	rsubhn2,
+	uqadd,
+	sqadd,
+	uqsub,
+	sqsub,
+	sub,
+	fsub,
+	subhn,
+	subhn2,
+	usubl,
+	usubl2,
+	ssubl,
+	ssubl2,
+	usubw,
+	usubw2,
+	ssubw,
+	ssubw2,
+	// end of AArch64 arithmetic instructions
 
 	vqrshl,
 	vqrshrn,
@@ -156,7 +218,6 @@ public enum EnumInstruction {
 	vrsqrts,
 
 	vext,
-
 	vmrs,
 	vmsr;
 }

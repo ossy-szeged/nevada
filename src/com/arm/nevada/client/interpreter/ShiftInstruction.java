@@ -178,24 +178,24 @@ public class ShiftInstruction extends Instruction {
 		if (this.immediate) {
 			
 			this.immediateValue = (int) arguments.getImmediateValue();
-			if (arguments.getRegisterIndexes().size() == 2) {
-				this.destinationIndex = arguments.getRegisterIndexes().get(0);
-				this.sourceDataIndex = arguments.getRegisterIndexes().get(1);
-			} else if (arguments.getRegisterIndexes().size() == 1) {
-				this.destinationIndex = arguments.getRegisterIndexes().get(0);
-				this.sourceDataIndex = arguments.getRegisterIndexes().get(0);
+			if (arguments.size() == 2) {
+				this.destinationIndex = arguments.getRegisterIndex(0);
+				this.sourceDataIndex = arguments.getRegisterIndex(1);
+			} else if (arguments.size() == 1) {
+				this.destinationIndex = arguments.getRegisterIndex(0);
+				this.sourceDataIndex = arguments.getRegisterIndex(0);
 			} else
 				assert false;
 		}
 		else {
-			if (arguments.getRegisterIndexes().size() == 3) {
-				this.destinationIndex = arguments.getRegisterIndexes().get(0);
-				this.sourceDataIndex = arguments.getRegisterIndexes().get(1);
-				this.shiftRegisterIndex = arguments.getRegisterIndexes().get(2);
-			} else if (arguments.getRegisterIndexes().size() == 2) {
-				this.destinationIndex = arguments.getRegisterIndexes().get(0);
-				this.sourceDataIndex = arguments.getRegisterIndexes().get(0);
-				this.shiftRegisterIndex = arguments.getRegisterIndexes().get(1);
+			if (arguments.size() == 3) {
+				this.destinationIndex = arguments.getRegisterIndex(0);
+				this.sourceDataIndex = arguments.getRegisterIndex(1);
+				this.shiftRegisterIndex = arguments.getRegisterIndex(2);
+			} else if (arguments.size() == 2) {
+				this.destinationIndex = arguments.getRegisterIndex(0);
+				this.sourceDataIndex = arguments.getRegisterIndex(0);
+				this.shiftRegisterIndex = arguments.getRegisterIndex(1);
 			} else {
 				assert false;
 			}
@@ -537,7 +537,7 @@ public class ShiftInstruction extends Instruction {
 				allWords[doubleI * 2 + wordI] = DataTypeTools.createByParts(wordParts);
 			}
 		}
-		machine.getNEONRegisterSet().setRegisterValues(regType, true, destIndex, allWords);
+		machine.getNEONRegisterSet().setRegisterValues(regType, false, destIndex, allWords);
 	}
 
 	private void store64(Machine machine, long[] parts, EnumRegisterType regType, int destIndex) {
@@ -549,7 +549,7 @@ public class ShiftInstruction extends Instruction {
 			allWord[doubleI * 2 + 0] = wordsFromLong[0];
 			allWord[doubleI * 2 + 1] = wordsFromLong[1];
 		}
-		machine.getNEONRegisterSet().setRegisterValues(regType, true, destIndex, allWord);
+		machine.getNEONRegisterSet().setRegisterValues(regType, false, destIndex, allWord);
 	}
 
 	@Override

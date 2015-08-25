@@ -47,8 +47,8 @@ public class VtrnInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.data1Index = arguments.getRegisterIndexes().get(0);
-		this.data2Index = arguments.getRegisterIndexes().get(1);
+		this.data1Index = arguments.getRegisterIndex(0);
+		this.data2Index = arguments.getRegisterIndex(1);
 	}
 
 	@Override
@@ -62,8 +62,8 @@ public class VtrnInstruction extends Instruction {
 
 		int[] result1Words = DataTypeTools.createWordsFromOnePartPerWord(size, data1Parts);
 		int[] result2Words = DataTypeTools.createWordsFromOnePartPerWord(size, data2Parts);
-		neonRegSet.setRegisterValues(registerType, true, data1Index, result1Words);
-		neonRegSet.setRegisterValues(registerType, true, data2Index, result2Words);
+		neonRegSet.setRegisterValues(registerType, false, data1Index, result1Words);
+		neonRegSet.setRegisterValues(registerType, false, data2Index, result2Words);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}

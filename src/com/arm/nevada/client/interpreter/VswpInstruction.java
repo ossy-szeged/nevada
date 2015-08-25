@@ -46,8 +46,8 @@ public class VswpInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.data1Index = arguments.getRegisterIndexes().get(0);
-		this.data2Index = arguments.getRegisterIndexes().get(1);
+		this.data1Index = arguments.getRegisterIndex(0);
+		this.data2Index = arguments.getRegisterIndex(1);
 	}
 
 	@Override
@@ -56,8 +56,8 @@ public class VswpInstruction extends Instruction {
 		int[] values1 = neonRegSet.getRegisterValues(registerType, data1Index);
 		int[] values2 = neonRegSet.getRegisterValues(registerType, data2Index);
 
-		neonRegSet.setRegisterValues(registerType, true, data1Index, values2);
-		neonRegSet.setRegisterValues(registerType, true, data2Index, values1);
+		neonRegSet.setRegisterValues(registerType, false, data1Index, values2);
+		neonRegSet.setRegisterValues(registerType, false, data2Index, values1);
 
 		machine.incrementPCBy4();
 		highlightRegisters(machine);

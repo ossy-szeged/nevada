@@ -52,8 +52,8 @@ public class CountInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {		
 		dataType = arguments.getType();
-		destinationIndex = arguments.getRegisterIndexes().get(0);
-		sourceIndex = arguments.getRegisterIndexes().get(1);
+		destinationIndex = arguments.getRegisterIndex(0);
+		sourceIndex = arguments.getRegisterIndex(1);
 
 		size = dataType.getSizeInBits();
 	}
@@ -79,7 +79,7 @@ public class CountInstruction extends Instruction {
 		} else
 			assert false;
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerWord(size, resultParts);
-		neonRegSet.setRegisterValues(registerType, true, destinationIndex, resultWords);
+		neonRegSet.setRegisterValues(registerType, false, destinationIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}

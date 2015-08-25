@@ -111,14 +111,21 @@ public class NEONRegisterSet extends Storage
 		return out;
 	}
 
-	public void setRegisterValues(EnumRegisterType type, boolean fireEvent, int index, int... values) {
-		assert (values.length == type.getSizeInBytes() / 4);
+	public void setRegisterValues(EnumRegisterType type, boolean secondPart, int index, int... values) {
+		//assert (values.length == type.getSizeInBytes() / 4);
+		
+		if (secondPart) {
+			assert (type == EnumRegisterType.QUAD);
+			this.setDoubleSecondPart(index, true, values);
+			return;
+		}
+		
 		switch (type) {
 		case DOUBLE:
-			this.setDouble(index, fireEvent, values);
+			this.setDouble(index, true, values);
 			break;
 		case QUAD:
-			this.setQuad(index, fireEvent, values);
+			this.setQuad(index, true, values);
 			break;
 		case SINGLE:
 			this.setOneValue(index, values[0], true);
@@ -144,6 +151,13 @@ public class NEONRegisterSet extends Storage
 	}
 
 	@Override
+	public void setDoubleSecondPart(int index, int... values) {
+		assert values.length == 2;
+		setOneValue(4 * index + 2, values[0], true);
+		setOneValue(4 * index + 3, values[1], true);
+	}
+
+	@Override
 	public void setDouble(int index, boolean fireEvent, int... values) {
 		setDouble(index, values);
 		if (fireEvent) {
@@ -153,6 +167,18 @@ public class NEONRegisterSet extends Storage
 		}
 
 	}
+
+	@Override
+	public void setDoubleSecondPart(int index, boolean fireEvent, int... values) {
+		setDoubleSecondPart(index, values);
+		
+		if (fireEvent) {
+			for (int i = 0; i < values.length; i++) {
+				fireValueChanged(4 * index + i + 2, values[i]);
+			}
+		}
+	}
+
 
 	@Override
 	public int[] getQuad(int index) {

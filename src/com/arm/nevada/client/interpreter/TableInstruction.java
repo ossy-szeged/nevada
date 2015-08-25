@@ -70,9 +70,9 @@ public class TableInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.destinationRegisterIndex = arguments.getRegisterIndexes().get(0);
-		this.indexVectorIndex = arguments.getRegisterIndexes().get(2);
-		this.tableRegisterIndex = arguments.getRegisterIndexes().get(1);
+		this.destinationRegisterIndex = arguments.getRegisterIndex(0);
+		this.indexVectorIndex = arguments.getRegisterIndex(2);
+		this.tableRegisterIndex = arguments.getRegisterIndex(1);
 		this.size = dataType.getSizeInBits();
 
 		assert (this.registerType == EnumRegisterType.DOUBLE);
@@ -94,7 +94,7 @@ public class TableInstruction extends Instruction {
 		int[] resultPartList = calculateTable(indexVector, table);
 
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerWord(size, resultPartList);
-		neonRegSet.setRegisterValues(registerType, true, destinationRegisterIndex, resultWords);
+		neonRegSet.setRegisterValues(registerType, false, destinationRegisterIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}

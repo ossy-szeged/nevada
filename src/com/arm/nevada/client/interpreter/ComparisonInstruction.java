@@ -26,8 +26,6 @@
 
 package com.arm.nevada.client.interpreter;
 
-import java.util.List;
-
 import com.arm.nevada.client.interpreter.machine.Machine;
 import com.arm.nevada.client.interpreter.machine.NEONRegisterSet;
 import com.arm.nevada.client.parser.Arguments;
@@ -61,6 +59,9 @@ public class ComparisonInstruction extends Instruction {
 	private static final int falseValue = 0;
 	private static final int trueValue = 0xFFFFFFFF;
 
+	// TODO: set it for float mnemonics
+	private boolean floatType = false;
+	
 	public ComparisonInstruction(
 			EnumInstruction instruction, EnumRegisterType destinationRegisterType, boolean compareToZero) {
 		this.instruction = instruction;
@@ -119,22 +120,20 @@ public class ComparisonInstruction extends Instruction {
 	public void bindArguments(Arguments arguments) {
 		this.dateType = arguments.getType();
 
-		List<Integer> registerIndexes = arguments.getRegisterIndexes();
-
-		destinationRegisterIndex = registerIndexes.get(0);
+		destinationRegisterIndex = arguments.getRegisterIndex(0);
 		if (compareToZero) {
-			if (registerIndexes.size() == 1) {
+			if (arguments.size() == 1) {
 				source1RegisterIndex = destinationRegisterIndex;
 			} else {
-				source1RegisterIndex = registerIndexes.get(1);
+				source1RegisterIndex = arguments.getRegisterIndex(1);
 			}
 		} else {
-			if (registerIndexes.size() == 2) {
+			if (arguments.size() == 2) {
 				source1RegisterIndex = destinationRegisterIndex;
-				source2RegisterIndex = registerIndexes.get(1);
+				source2RegisterIndex = arguments.getRegisterIndex(1);
 			} else {
-				source1RegisterIndex = registerIndexes.get(1);
-				source2RegisterIndex = registerIndexes.get(2);
+				source1RegisterIndex = arguments.getRegisterIndex(1);
+				source2RegisterIndex = arguments.getRegisterIndex(2);
 			}
 		}
 	}
@@ -155,7 +154,7 @@ public class ComparisonInstruction extends Instruction {
 			resultParts[partI] = result;
 		}
 		int[] outWords = DataTypeTools.createWordsFromOnePartPerWord(dateType.getSizeInBits(), resultParts);
-		neonRegisterSet.setRegisterValues(registerType, true, destinationRegisterIndex, outWords);
+		neonRegisterSet.setRegisterValues(registerType, false, destinationRegisterIndex, outWords);
 		highlightDestinationRegisters(machine);
 		machine.incrementPCBy4();
 	}
@@ -166,7 +165,7 @@ public class ComparisonInstruction extends Instruction {
 
 	private int calculate(int first, int second, Machine machine) {
 		int out;
-		if (dateType.isFloatType()) {
+		if (floatType) {
 			// float
 			int fpscr = machine.getSpecialRegisters().getOneValue(SpecialRegiser.FPSCR.getIndex());
 			float f1 = DataTypeTools.Float32Value(first, fpscr);

@@ -46,6 +46,9 @@ public class MinimumAndMaximumInstruction extends Instruction {
 	private boolean pairwise;
 	private int destinationRegisterIndex;
 	private int size;
+	
+	// TODO: set it for float mnemonics
+	private boolean floatType = false;
 
 	public MinimumAndMaximumInstruction(EnumInstruction instruction, EnumRegisterType registerType) {
 		this.instruction = instruction;
@@ -84,9 +87,9 @@ public class MinimumAndMaximumInstruction extends Instruction {
 		this.dataType = arguments.getType();
 		this.size = dataType.getSizeInBits();
 
-		this.destinationRegisterIndex = arguments.getRegisterIndexes().get(0);
-		this.data1Index = arguments.getRegisterIndexes().get(1);
-		this.data2Index = arguments.getRegisterIndexes().get(2);
+		this.destinationRegisterIndex = arguments.getRegisterIndex(0);
+		this.data1Index = arguments.getRegisterIndex(1);
+		this.data2Index = arguments.getRegisterIndex(2);
 	}
 
 	@Override
@@ -100,14 +103,14 @@ public class MinimumAndMaximumInstruction extends Instruction {
 		}
 
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerWord(size, resultParts);
-		machine.getNEONRegisterSet().setRegisterValues(destinationRegisterType, true, destinationRegisterIndex, resultWords);
+		machine.getNEONRegisterSet().setRegisterValues(destinationRegisterType, false, destinationRegisterIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}
 
 	private int calculate(int op1, int op2) {
 		int result;
-		if (dataType.isFloatType()) {
+		if (floatType) {
 			result = calculateFloat(op1, op2);
 		}
 		else {

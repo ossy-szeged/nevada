@@ -98,12 +98,12 @@ public class MoveInstruction extends Instruction {
 	
 	@Override
 	public void bindArguments(Arguments arguments) {
-		this.destinationIndex = arguments.getRegisterIndexes().get(0);
+		this.destinationIndex = arguments.getRegisterIndex(0);
 
 		if (this.immediate) {
 			this.immedateValue = arguments.getImmediateValue();
 		} else {
-			this.sourceIndex = arguments.getRegisterIndexes().get(1);
+			this.sourceIndex = arguments.getRegisterIndex(1);
 		}
 
 		this.dataType = arguments.getType();
@@ -142,7 +142,7 @@ public class MoveInstruction extends Instruction {
 		}
 
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerLong(destSize, resultParts);
-		neonRS.setRegisterValues(destRegisterType, true, destinationIndex, resultWords);
+		neonRS.setRegisterValues(destRegisterType, false, destinationIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightChangedRegisters(machine);
 	}

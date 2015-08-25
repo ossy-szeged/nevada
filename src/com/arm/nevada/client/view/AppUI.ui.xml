@@ -107,7 +107,7 @@
 										addStyleNames="{style.NEONRegisterSet}" />
 								</g:CaptionPanel>
 							</td>
-							<td style="width: 29%; height:355px">
+							<td style="width: 29%; height:591px">
 								<div style="width: 100%; height: 100%; position: relative">
 									<fieldset
 										style="height: 100%; box-sizing: border-box; -webkit-box-sizing:border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box;">
@@ -116,7 +116,7 @@
 									</fieldset>
 								</div>
 							</td>
-							<td style="width: 21%; height:355px;">
+							<td style="width: 21%">
 								<div style="width: 100%; height: 100%; position: relative">
 									<fieldset
 										style="height: 100%; box-sizing: border-box; -webkit-box-sizing:border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box;">

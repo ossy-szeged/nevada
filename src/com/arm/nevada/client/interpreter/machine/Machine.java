@@ -53,15 +53,15 @@ public class Machine {
 	}
 
 	public int getPC() {
-		return armRegisterSet.getOneValue(ARMRegister.R15.getIndex());
+		return armRegisterSet.getOneValue(ARMRegister.R32.getIndex());
 	}
 
 	public void setPC(int value) {
-		armRegisterSet.setOneValue(ARMRegister.R15.getIndex(), value, true);
+		armRegisterSet.setOneValue(ARMRegister.R32.getIndex(), value, true);
 	}
 
 	public void incrementPCBy4() {
-		armRegisterSet.setOneValue(ARMRegister.R15.getIndex(), armRegisterSet.getOneValue(15) + 4, true);
+		armRegisterSet.setOneValue(ARMRegister.R32.getIndex(), armRegisterSet.getOneValue(32) + 4, true);
 		eventBus.fireEvent(new ProgramCounterChangedEvenet(getPC()));
 	}
 
@@ -102,6 +102,12 @@ public class Machine {
 		eventBus.fireEvent(new NEONRegisterChangedHighlightEvent(
 				index * 16,
 				index * 16 + type.getSizeInBytes() - 1));
+	}
+
+	public void highlightNEONRegisterSecondPart(EnumRegisterType type, int index) {
+		eventBus.fireEvent(new NEONRegisterChangedHighlightEvent(
+				index * 16 + 8,
+				index * 16 + 8 + type.getSizeInBytes()/2 - 1));
 	}
 
 	/**

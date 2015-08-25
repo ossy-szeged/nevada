@@ -46,4 +46,9 @@ public class InstructionForm {
 	public Token[] getTokens() {
 		return tokens;
 	}
+
+	public Instruction getInstructionTemplate() {
+		return template;
+	}
+
 }

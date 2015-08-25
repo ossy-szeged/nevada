@@ -32,4 +32,8 @@ public interface IDoubleWordDataSet {
 	public void setDouble(int index, int... values);
 
 	public void setDouble(int index, boolean fireEvent, int... values);
+
+	public void setDoubleSecondPart(int index, int... values);
+
+	public void setDoubleSecondPart(int index, boolean fireEvent, int... values);
 }

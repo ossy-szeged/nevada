@@ -25,9 +25,6 @@
  */
 
 package com.arm.nevada.client.parser;
-
-import java.util.Arrays;
-
 import com.arm.nevada.client.interpreter.EnumDataType;
 import com.arm.nevada.client.shared.ARMRegister;
 import com.arm.nevada.client.shared.Out;
@@ -97,737 +94,6 @@ public class Token {
 		public boolean isError() {
 			return error;
 		}
-	}
-}
-
-/**
- * Accepts any data type which is defined in EnumDataType. E.g.: ".u32"
- */
-abstract class DataTypeToken extends Token {
-	MSG parse(String instruction, int pos, Arguments a) {
-		assert pos >= 0;
-		int end = pos;
-		while (end < instruction.length()) {
-			char c = instruction.charAt(end);
-			if (c == '.' || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9'))
-				end++;
-			else
-				break;
-		}
-		a.setType(EnumDataType.getByAssemblyName(instruction
-				.substring(pos, end)));
-		if (a.getType() == null)
-			return new MSG(-pos - 1, "Invalid data type");
-		return MSG.ok(end);
-	}
-}
-
-/**
- * Accepts all data type which is in EnumDataType.allType. In fact it should include all of the data types.
- */
-class All extends DataTypeToken {
-	static Token p() {
-		return staticThis;
-	}
-
-	private static final All staticThis = new All();
-
-	MSG parse(String instruction, int pos, Arguments a) {
-		assert pos >= 0;
-		int end = super.parse(instruction, pos, a).getPosition();
-		if (end < 0)
-			return MSG.error(-pos - 1, "Invalid data type");
-		EnumDataType type = a.getType();
-		if (Arrays.asList(EnumDataType.allType).contains(type)) {
-			return MSG.ok(end);
-		}
-		return MSG.error(-pos - 1, "This type is incorrect here");
-	}
-}
-
-/**
- * Accepts all unsigned data type. Like: .u8, u16 and so on.
- */
-class AllU extends OneType {
-
-	private static final AllU staticThis = new AllU();
-
-	public AllU() {
-		super(EnumDataType.allUnsigned);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts all signed data type. Like: .s8, s16 and so on.
- */
-class AllS extends OneType {
-
-	private static final AllS staticThis = new AllS();
-
-	public AllS() {
-		super(EnumDataType.allSigned);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts all signed data type which are maximum 32 bit wide: .s8, .s16, .s32
- */
-class AllSignedSingle extends OneType {
-	private static final AllSignedSingle staticThis = new AllSignedSingle();
-
-	public AllSignedSingle() {
-		super(EnumDataType.allSignedSingle);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts all unsigned, maximum 32 bit wide data types: .u8, .u16, .u32
- */
-class AllUnsignedSingle extends OneType {
-
-	private static final AllUnsignedSingle staticThis = new AllUnsignedSingle();
-
-	public AllUnsignedSingle() {
-		super(EnumDataType.allUnsignedSingle);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts all data type which maximum 32 bit wide.
- */
-class AllISingle extends OneType {
-	private static final AllISingle staticThis = new AllISingle();
-
-	public AllISingle() {
-		super(EnumDataType.allIntegerSingle);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * If there is data type, then accepts any of them, if can't parse data type, then it doesn't change anything and
- * accepts it.
- */
-class OptType extends OneType {
-	private static final OptType staticThis = new OptType();
-
-	public OptType() {
-		super(EnumDataType.allType);
-	}
-
-	@Override
-	MSG parse(String instruction, int pos, Arguments a) {
-		MSG result = super.parse(instruction, pos, a);
-		if (!result.isError()) {
-			return result;
-		} else {
-			return new MSG(pos);
-		}
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts any integer type. So all: .i##, .u##, .s##
- */
-class AllI extends OneType {
-	private static final AllI staticThis = new AllI();
-
-	public AllI() {
-		super(EnumDataType.allInteger);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts all data type. The reason for the existence of this class is just for the logical meaning. The point is the
- * size.
- */
-class AllSize extends OneType {
-	private static final AllSize staticThis = new AllSize();
-
-	public AllSize() {
-		super(EnumDataType.allType);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts any type with maximum size of 32.
- */
-class AllSingleWide extends OneType {
-	private static final AllSingleWide staticThis = new AllSingleWide();
-
-	public AllSingleWide() {
-		super(EnumDataType.allSingleWide);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts any 8 bit wide data type.
- */
-class All8 extends OneType {
-	private static final All8 staticThis = new All8();
-
-	public All8() {
-		super(EnumDataType.all8);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts any 16 bit wide data type.
- */
-class All16 extends OneType {
-	private static final All16 staticThis = new All16();
-
-	public All16() {
-		super(EnumDataType.all16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts any 32 bit wide data type.
- */
-class All32 extends OneType {
-	private static final All32 staticThis = new All32();
-
-	public All32() {
-		super(EnumDataType.all32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts any 64 bit wide data type.
- */
-class All64 extends OneType {
-	private static final All64 staticThis = new All64();
-
-	public All64() {
-		super(EnumDataType.all64);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts any polynomial data type.
- */
-class AllP extends OneType {
-	private static final AllP staticThis = new AllP();
-
-	public AllP() {
-		super(EnumDataType.allPolynomial);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-abstract class OneType extends DataTypeToken {
-	private EnumDataType[] dataType;
-
-	public OneType(EnumDataType... dataType) {
-		this.dataType = dataType;
-	}
-
-	MSG parse(String instruction, int pos, Arguments a) {
-		int end = super.parse(instruction, pos, a).getPosition();
-		if (end < 0)
-			return MSG.error(-pos - 1, "Invalid data type");
-		EnumDataType type = a.getType();
-		for (int i = 0; i < dataType.length; i++) {
-			if (type == dataType[i]) {
-				a.setType(type);
-				return MSG.ok(end);
-			}
-		}
-		return MSG.error(-pos - 1, "This type is incorrect here");
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class U8 extends OneType {
-
-	private static final U8 staticThis = new U8();
-
-	public U8() {
-		super(EnumDataType._u8);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class U16 extends OneType {
-
-	private static final U16 staticThis = new U16();
-
-	public U16() {
-		super(EnumDataType._u16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class U32 extends OneType {
-
-	private static final U32 staticThis = new U32();
-
-	public U32() {
-		super(EnumDataType._u32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts .u64
- */
-class U64 extends OneType {
-
-	private static final U64 staticThis = new U64();
-
-	public U64() {
-		super(EnumDataType._u64);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class I8 extends OneType {
-
-	private static final I8 staticThis = new I8();
-
-	public I8() {
-		super(EnumDataType._i8, EnumDataType._s8, EnumDataType._u8);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class I16 extends OneType {
-
-	private static final I16 staticThis = new I16();
-
-	public I16() {
-		super(EnumDataType._i16, EnumDataType._s16, EnumDataType._u16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class I32 extends OneType {
-
-	private static final I32 staticThis = new I32();
-
-	public I32() {
-		super(EnumDataType._i32, EnumDataType._s32, EnumDataType._u32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class I64 extends OneType {
-
-	private static final I64 staticThis = new I64();
-
-	public I64() {
-		super(EnumDataType._i64, EnumDataType._s64, EnumDataType._u64);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class S8 extends OneType {
-
-	private static final S8 staticThis = new S8();
-
-	public S8() {
-		super(EnumDataType._s8);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class S16 extends OneType {
-
-	private static final S16 staticThis = new S16();
-
-	public S16() {
-		super(EnumDataType._s16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class S32 extends OneType {
-
-	private static final S32 staticThis = new S32();
-
-	public S32() {
-		super(EnumDataType._s32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class S64 extends OneType {
-
-	private static final S64 staticThis = new S64();
-
-	public S64() {
-		super(EnumDataType._s64);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts F32.
- */
-class F extends F32 {
-
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class _8 extends OneType {
-
-	private static final _8 staticThis = new _8();
-
-	public _8() {
-		super(EnumDataType.all8);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class _16 extends OneType {
-
-	private static final _16 staticThis = new _16();
-
-	public _16() {
-		super(EnumDataType.all16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class _32 extends OneType {
-
-	private static final _32 staticThis = new _32();
-
-	public _32() {
-		super(EnumDataType.all32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class _64 extends OneType {
-
-	private static final _64 staticThis = new _64();
-
-	public _64() {
-		super(EnumDataType.all64);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class F32 extends OneType {
-
-	private static final F32 staticThis = new F32();
-
-	public F32() {
-		super(EnumDataType._f32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class F64 extends OneType {
-
-	private static final F64 staticThis = new F64();
-
-	public F64() {
-		super(EnumDataType._f64);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class F16 extends OneType {
-
-	private static final F16 staticThis = new F16();
-
-	public F16() {
-		super(EnumDataType._f16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class P8 extends OneType {
-
-	private static final P8 staticThis = new P8();
-
-	public P8() {
-		super(EnumDataType._p8);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class P16 extends OneType {
-
-	private static final P16 staticThis = new P16();
-
-	public P16() {
-		super(EnumDataType._p16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class S32F32 extends OneType {
-
-	private static final S32F32 staticThis = new S32F32();
-
-	public S32F32() {
-		super(EnumDataType._s32_f32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class U32F32 extends OneType {
-
-	private static final U32F32 staticThis = new U32F32();
-
-	public U32F32() {
-		super(EnumDataType._u32_f32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class F32S32 extends OneType {
-
-	private static final F32S32 staticThis = new F32S32();
-
-	public F32S32() {
-		super(EnumDataType._f32_s32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class F32U32 extends OneType {
-
-	private static final F32U32 staticThis = new F32U32();
-
-	public F32U32() {
-		super(EnumDataType._f32_u32);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class F32F16 extends OneType {
-
-	private static final F32F16 staticThis = new F32F16();
-
-	public F32F16() {
-		super(EnumDataType._f32_f16);
-	}
-
-	static Token p() {
-		return staticThis;
-	}
-}
-
-/**
- * Accepts the named data type and the stricter types if exists.
- */
-class F16F32 extends OneType {
-
-	private static final F16F32 staticThis = new F16F32();
-
-	public F16F32() {
-		super(EnumDataType._f16_f32);
-	}
-
-	static Token p() {
-		return staticThis;
 	}
 }
 
@@ -903,7 +169,7 @@ class RegisterToken extends Token {
 				return MSG.error(-pos - 1, "Register index out of interval");
 			pos++;
 		}
-		a.getRegisterIndexes().add(register);
+		a.add(register);
 		return MSG.ok(pos);
 	}
 }
@@ -936,17 +202,17 @@ class R extends RegisterToken {
 			} else {
 				String allias = instruction.substring(pos, pos + 2);
 				if (allias.equalsIgnoreCase("sp")) {
-					a.getRegisterIndexes().add(ARMRegister.R13.getIndex());
+					a.add(ARMRegister.R13.getIndex());
 					alliasResult = MSG.ok(pos + 2);
 					pos += 2;
 				}
 				else if (allias.equalsIgnoreCase("lr")) {
-					a.getRegisterIndexes().add(ARMRegister.R14.getIndex());
+					a.add(ARMRegister.R14.getIndex());
 					alliasResult = MSG.ok(pos + 2);
 					pos += 2;
 				}
 				else if (allias.equalsIgnoreCase("pc")) {
-					a.getRegisterIndexes().add(ARMRegister.R15.getIndex());
+					a.add(ARMRegister.R15.getIndex());
 					alliasResult = MSG.ok(pos + 2);
 					pos += 2;
 				}
@@ -974,7 +240,7 @@ class RNotPCNotSP extends R {
 		if (superParserResult.isError()) {
 			return superParserResult;
 		} else {
-			int index = a.getRegisterIndexes().get(a.getRegisterIndexes().size() - 1);
+			int index = a.getRegisterIndex(a.size() - 1);
 			if (index == ARMRegister.R15.getIndex() || index == ARMRegister.R13.getIndex()) {
 				return MSG.error(-pos - 1, "PC (R15) and SP (R13) are permitted register here.");
 			} else {
@@ -1003,7 +269,7 @@ class ROffset extends R {
 		pos = super.parse(instruction, pos, a).getPosition();
 		if (pos < 0)
 			return MSG.error(-savePos - 1, "Must be a valid core register");
-		int index = a.getRegisterIndexes().get(a.getRegisterIndexes().size() - 1);
+		int index = a.getRegisterIndex(a.size() - 1);
 		if (index == ARMRegister.R13.getIndex() || index == ARMRegister.R15.getIndex())
 			return MSG.error(-pos - 1, "R15 and R13 are not available here");
 		return MSG.ok(pos);
@@ -1045,6 +311,158 @@ class Q extends RegisterToken {
 
 	MSG parse(String instruction, int pos, Arguments a) {
 		return super.parse(instruction, pos, a, 'q', 31);
+	}
+}
+
+/**
+ * Accepts one NEON V (vector) register. V0..V31
+ */
+class V extends RegisterToken {
+	private static final V staticThis = new V();
+
+	static Token p() {
+		return staticThis;
+	}
+
+	protected V() {
+		super();
+	}
+
+	MSG superParse(String instruction, int pos, Arguments a) {
+		return super.parse(instruction, pos, a, 'v', 31);
+	}
+
+	MSG parse(String instruction, int pos, Arguments a, EnumVectorRegisterType[] types) {
+		MSG result = superParse(instruction, pos, a);
+		if (!result.isError()) {
+			pos = result.getPosition();
+			for (EnumVectorRegisterType type : types) {
+				if (instruction.toLowerCase().startsWith(type.getAssemblyName().toLowerCase(), pos)) {
+					// TODO: save the size of the vector and the size of the element _somewhere_
+					pos += type.getAssemblyName().length();
+					a.addVectorRegisterType(type);
+					return MSG.ok(pos);
+				}
+			}
+			return MSG.error(-pos - 1, "Invalid vector type");
+		} else {
+			return result;
+		}
+	}
+
+}
+
+/**
+ * Accepts one 64/128 bit NEON V (vector) register. Vn.8B, Vn.4H, Vn.2S, Vn.16B, Vn.8H, Vn.4S where n: 0,...,31
+ */
+class V_BHS extends V {
+	private static final V_BHS staticThis = new V_BHS();
+
+	static Token p() {
+		return staticThis;
+	}
+
+	protected V_BHS() {
+		super();
+	}
+
+	MSG parse(String instruction, int pos, Arguments a) {
+		return super.parse(instruction, pos, a, EnumVectorRegisterType.allVectorsBHS);
+	}
+}
+
+/**
+ * Accepts one 64/128 bit NEON V (vector) register. Vn.8B, Vn.4H, Vn.2S, Vn.16B, Vn.8H, Vn.4S, Vn.2D where n: 0,...,31
+ */
+class V_BHSD extends V {
+	private static final V_BHSD staticThis = new V_BHSD();
+
+	static Token p() {
+		return staticThis;
+	}
+
+	protected V_BHSD() {
+		super();
+	}
+
+	MSG parse(String instruction, int pos, Arguments a) {
+		return super.parse(instruction, pos, a, EnumVectorRegisterType.allVectorsBHSD);
+	}
+}
+
+/**
+ * Accepts one 64 bit NEON V (vector) register. Vn.8B, Vn.4H, Vn.2S where n: 0,...,31
+ */
+class V64BHS extends V {
+	private static final V64BHS staticThis = new V64BHS();
+
+	static Token p() {
+		return staticThis;
+	}
+
+	protected V64BHS() {
+		super();
+	}
+
+	MSG parse(String instruction, int pos, Arguments a) {
+		return super.parse(instruction, pos, a, EnumVectorRegisterType.all64bitvectorsBHS);
+	}
+}
+
+/**
+ * Accepts one 64 bit NEON V (vector) register. Vn.8B, Vn.4H, Vn.2S, Vn.1D where n: 0,...,31
+ */
+class V64BHSD extends V {
+	private static final V64BHSD staticThis = new V64BHSD();
+
+	static Token p() {
+		return staticThis;
+	}
+
+	protected V64BHSD() {
+		super();
+	}
+
+	MSG parse(String instruction, int pos, Arguments a) {
+		return super.parse(instruction, pos, a, EnumVectorRegisterType.all64bitvectorsBHSD);
+	}
+}
+
+/**
+ * Accepts one 128 bit NEON V (vector) register. Vn.16B, Vn.8H, Vn.4S where n: 0,...,31
+ */
+class V128BHS extends V {
+	private static final V128BHS staticThis = new V128BHS();
+
+	static Token p() {
+		return staticThis;
+	}
+
+	protected V128BHS() {
+		super();
+	}
+
+	MSG parse(String instruction, int pos, Arguments a) {
+		return super.parse(instruction, pos, a, EnumVectorRegisterType.all128bitvectorsBHS);
+	}
+}
+
+/**
+ * Accepts one 128 bit NEON V (vector) register. Vn.16B, Vn.8H, Vn.4S, Vn.2D where n: 0,...,31
+ */
+class V128BHSD extends V {
+	private static final V128BHSD staticThis = new V128BHSD();
+
+	static Token p() {
+		return staticThis;
+	}
+
+	protected V128BHSD() {
+		super();
+	}
+
+	MSG parse(String instruction, int pos, Arguments a) {
+		return super.parse(instruction, pos, a, EnumVectorRegisterType.all128bitvectorsBHSD);
 	}
 }
 
@@ -1123,7 +541,7 @@ class DsubRegForScalar extends DSubReg {
 	@Override
 	boolean check(Arguments a) {
 		boolean result = super.check(a);
-		int regIndex = a.getRegisterIndexes().get(a.getRegisterIndexes().size());
+		int regIndex = a.getRegisterIndex(a.size());
 		int size = a.getType().getSizeInBits();
 
 		boolean d0D7Size16 = regIndex >= 0 && regIndex < 8 && size == 16;
@@ -1413,7 +831,7 @@ class ImmVorr extends ImmGeneralInstruction {
 	private static final ImmVorr staticThis = new ImmVorr();
 
 	ImmVorr() {
-		immType = EnumInstruction.vorr;
+		immType = EnumInstruction.orr;
 	}
 }
 
@@ -1428,7 +846,7 @@ class ImmVbic extends ImmGeneralInstruction {
 	private static final ImmVbic staticThis = new ImmVbic();
 
 	ImmVbic() {
-		immType = EnumInstruction.vbic;
+		immType = EnumInstruction.bic;
 	}
 }
 
@@ -1544,7 +962,7 @@ class ListSubIndex extends Token {
 			if (hasSubindex)
 				if (emptyA.getSubRegisterIndex() != tempArgs.getSubRegisterIndex())
 					return MSG.error(-savePos - 1, "Sub indexes must be the same");
-			if (tempArgs.getRegisterIndexes().get(0) - emptyA.getRegisterIndexes().get(0) != spacing * (desiredItemCount - 1))
+			if (tempArgs.getRegisterIndex(0) - emptyA.getRegisterIndex(0) != spacing * (desiredItemCount - 1))
 				return MSG.error(-pos - 1, "Register count and/or spacing not correct");
 		} else {
 			int currentItemCount = 0;
@@ -1557,11 +975,11 @@ class ListSubIndex extends Token {
 				if (pos < 0)
 					return MSG.error(-savePos - 1, "Invalid D (maybe should forward the previous error");
 				if (currentItemCount == 0) {
-					emptyA.getRegisterIndexes().add(tempArgs.getRegisterIndexes().get(0));
+					emptyA.add(tempArgs.getRegisterIndex(0));
 					if (hasSubindex)
 						emptyA.setSubRegisterIndex(tempArgs.getSubRegisterIndex());
 				} else {
-					if (emptyA.getRegisterIndexes().get(0) + spacing * currentItemCount != tempArgs.getRegisterIndexes().get(currentItemCount))
+					if (emptyA.getRegisterIndex(0) + spacing * currentItemCount != tempArgs.getRegisterIndex(currentItemCount))
 						return MSG.error(-savePos - 1, "Maybe invalid list element count or spacing");
 					if (hasSubindex && emptyA.getSubRegisterIndex() != tempArgs.getSubRegisterIndex())
 						return MSG.error(-savePos - 1, "Sub register indexes must be the same");
@@ -1583,7 +1001,7 @@ class ListSubIndex extends Token {
 		pos = Utils.parseChar(instruction, pos, '}');
 		if (pos < 0)
 			return MSG.error(-savePos - 1, "List must be closed with }");
-		a.getRegisterIndexes().add(emptyA.getRegisterIndexes().get(emptyA.getRegisterIndexes().size() - 1));
+		a.add(emptyA.getRegisterIndex(emptyA.size() - 1));
 		a.setSubRegisterIndex(emptyA.getSubRegisterIndex());
 		return MSG.ok(pos);
 	}
@@ -1611,7 +1029,7 @@ class BaseAddress extends Token {
 		pos = R.p().parse(instruction, pos, a).getPosition();
 		if (pos < 0)
 			return MSG.error(-savePos - 1, "Invalid core register");
-		int index = a.getRegisterIndexes().get(a.getRegisterIndexes().size() - 1);
+		int index = a.getRegisterIndex(a.size() - 1);
 		if (index == ARMRegister.R15.getIndex() || index == ARMRegister.R13.getIndex())
 			return MSG.error(-savePos - 1, "R13 and R15 are disallowed");
 

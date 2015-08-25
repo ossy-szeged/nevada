@@ -77,9 +77,11 @@ public class ArmRegisterSet
 	private static final Logger logger = Logger.getLogger(ArmRegisterSet.class.getName());
 	protected static final int FPSCR_INDEX = 17;
 	protected static final int PSR_INDEX = 16;
-	protected static final int SP_INDEX = ARMRegister.R13.getIndex();
-	protected static final int LR_INDEX = ARMRegister.R14.getIndex();
-	protected static final int PC_INDEX = ARMRegister.R15.getIndex();
+
+//	protected static final int LR_INDEX = ARMRegister.R14.getIndex();
+
+	protected static final int SP_INDEX = ARMRegister.R31.getIndex();
+	protected static final int PC_INDEX = ARMRegister.R32.getIndex();
 	private static ARMRegisterSetUiBinder uiBinder = GWT.create(ARMRegisterSetUiBinder.class);
 
 	interface ARMRegisterSetUiBinder extends UiBinder<Widget, ArmRegisterSet> {
@@ -106,7 +108,7 @@ public class ArmRegisterSet
 	public ArmRegisterSet(EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < 33; i++) {
 			RegisterViewSettings view = new RegisterViewSettings(false, 32, false, NumberFormat.decimal);
 			ArmRegister element = new ArmRegister(null);
 			element.setIndex(i);
@@ -116,9 +118,10 @@ public class ArmRegisterSet
 			rRegisters[i].setRegisterViewSettings(view);
 			container.add(element);
 		}
-		rRegisters[PC_INDEX].setLabel("PC");
-		rRegisters[LR_INDEX].setLabel("LR");
+
 		rRegisters[SP_INDEX].setLabel("SP");
+		rRegisters[PC_INDEX].setLabel("PC");
+//		rRegisters[LR_INDEX].setLabel("LR");
 
 		allRegisters[16] = psr;
 		allRegisters[17] = fpscr;

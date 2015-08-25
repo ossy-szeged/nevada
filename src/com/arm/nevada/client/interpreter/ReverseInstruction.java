@@ -70,8 +70,8 @@ public class ReverseInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.destinationIndex = arguments.getRegisterIndexes().get(0);
-		this.sourceIndex = arguments.getRegisterIndexes().get(1);
+		this.destinationIndex = arguments.getRegisterIndex(0);
+		this.sourceIndex = arguments.getRegisterIndex(1);
 		this.size = dataType.getSizeInBits();
 	}
 
@@ -91,7 +91,7 @@ public class ReverseInstruction extends Instruction {
 		}
 
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerWord(size, resultParts);
-		neonRegSet.setRegisterValues(registerType, true, destinationIndex, resultWords);
+		neonRegSet.setRegisterValues(registerType, false, destinationIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}

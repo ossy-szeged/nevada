@@ -66,13 +66,8 @@ public enum EnumDataType {
 
 	private final Boolean signed;
 	private final Integer sizeInBits;
-	private final boolean floatType;
-	private final boolean converter;
-	private final EnumDataType from;
-	private final EnumDataType to;
 	private final String assemblyName;
 	private final boolean polynomial;
-	private final boolean integer;
 
 	private EnumDataType(
 			String assemblyName,
@@ -86,12 +81,7 @@ public enum EnumDataType {
 		this.assemblyName = assemblyName;
 		this.signed = signed;
 		this.sizeInBits = bitSize;
-		this.floatType = floatType;
-		this.converter = converter;
 		this.polynomial = polynomial;
-		this.integer = integer;
-		this.from = from;
-		this.to = to;
 	}
 
 	public int getSizeBitmask() {
@@ -140,32 +130,12 @@ public enum EnumDataType {
 		return sizeInBits;
 	}
 
-	public boolean isFloatType() {
-		return floatType;
-	}
-
-	public boolean isConverter() {
-		return converter;
-	}
-
-	public EnumDataType getFrom() {
-		return from;
-	}
-
-	public EnumDataType getTo() {
-		return to;
-	}
-
 	public String getAssemblyName() {
 		return assemblyName;
 	}
 
 	public boolean isPolynomial() {
 		return polynomial;
-	}
-
-	public boolean isInteger() {
-		return integer;
 	}
 
 }

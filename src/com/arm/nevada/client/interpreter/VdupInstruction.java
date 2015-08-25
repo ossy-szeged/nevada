@@ -56,12 +56,12 @@ public class VdupInstruction extends Instruction {
 		int sourceValue;
 		
 		if (this.fromArm) {
-			int wholeValue = machine.getArmRegisterSet().getOneValue(arguments.getRegisterIndexes().get(1));
+			int wholeValue = machine.getArmRegisterSet().getOneValue(arguments.getRegisterIndex(1));
 			// The source element is the least significant 8, 16, or 32 bits of
 			// the ARM core register
 			sourceValue = DataTypeTools.getParts(size, wholeValue)[0];
 		} else {
-			int[] wholeValue = machine.getNEONRegisterSet().getDouble(arguments.getRegisterIndexes().get(1));
+			int[] wholeValue = machine.getNEONRegisterSet().getDouble(arguments.getRegisterIndex(1));
 			int inWord = size * arguments.getSubRegisterIndex() < 32 ? 0 : 1;
 			int indexInWord = arguments.getSubRegisterIndex() - inWord * (32 / size);
 			sourceValue = DataTypeTools.getParts(size, wholeValue[inWord])[indexInWord];
@@ -74,11 +74,11 @@ public class VdupInstruction extends Instruction {
 		int oneWordValue = DataTypeTools.createByParts(oneWordParts);
 
 		if (this.destinationRegisterType == EnumRegisterType.DOUBLE) {
-			machine.getNEONRegisterSet().setDouble(arguments.getRegisterIndexes().get(0), true, oneWordValue, oneWordValue);
+			machine.getNEONRegisterSet().setDouble(arguments.getRegisterIndex(0), true, oneWordValue, oneWordValue);
 		} else {
-			machine.getNEONRegisterSet().setQuad(arguments.getRegisterIndexes().get(0), true, oneWordValue, oneWordValue, oneWordValue, oneWordValue);
+			machine.getNEONRegisterSet().setQuad(arguments.getRegisterIndex(0), true, oneWordValue, oneWordValue, oneWordValue, oneWordValue);
 		}
-		machine.highlightNEONRegister(this.destinationRegisterType, arguments.getRegisterIndexes().get(0));
+		machine.highlightNEONRegister(this.destinationRegisterType, arguments.getRegisterIndex(0));
 		machine.incrementPCBy4();
 	}
 

@@ -34,6 +34,7 @@ import com.arm.nevada.client.interpreter.EnumDataType;
 public class Arguments {
 	private EnumDataType type;
 	private List<Integer> registerIndexes = new ArrayList<Integer>(4);
+	private List<EnumVectorRegisterType> vectorRegisterTypes = new ArrayList<EnumVectorRegisterType>(4);
 	private int subRegisterIndex;
 	private long immediateValue;
 	private int alignmentByte = 1;
@@ -44,10 +45,6 @@ public class Arguments {
 
 	public void setType(EnumDataType type) {
 		this.type = type;
-	}
-
-	public List<Integer> getRegisterIndexes() {
-		return registerIndexes;
 	}
 
 	public void setRegisterIndexes(List<Integer> registerIndexes) {
@@ -76,5 +73,54 @@ public class Arguments {
 
 	public void setAlignmentByte(int alignmentByte) {
 		this.alignmentByte = alignmentByte;
+	}
+	
+	public int size() {
+		return registerIndexes.size();
+	}
+
+	public int getLastIndex() {
+		return registerIndexes.size() - 1;
+	}
+
+	public int getLastArgument(){
+		return registerIndexes.get(size() - 1);
+	}
+	
+	public int getRegisterIndex(int i) {
+		return registerIndexes.get(i);
+	}
+
+	public EnumVectorRegisterType getVectorRegisterType(int i) {
+		return vectorRegisterTypes.get(i);
+	}
+
+	public boolean addVectorRegisterType(EnumVectorRegisterType element) {
+		return vectorRegisterTypes.add(element);
+	}
+
+	public void addVectorRegisterType(int index, EnumVectorRegisterType element) {
+		vectorRegisterTypes.add(index, element);
+	}
+	
+	public boolean validateVectorRegisterTypes(EnumArgumentListType[] validTypes) {
+
+		for (EnumArgumentListType type: validTypes) {
+			EnumVectorRegisterType[] x = type.getList();
+			
+			if (x.length != vectorRegisterTypes.size()) {
+				return false;
+			}
+			
+			int i;
+			for (i=0; (i < vectorRegisterTypes.size()) && (x[i] == getVectorRegisterType(i)); i++);
+
+			if (i == vectorRegisterTypes.size())
+				return true;
+		}
+		return false;
+	}
+	public boolean add(Integer element) {
+		return registerIndexes.add(element);
 	}
 }

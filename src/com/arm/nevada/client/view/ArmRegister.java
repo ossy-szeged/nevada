@@ -129,7 +129,7 @@ public class ArmRegister extends Composite implements
 	}
 
 	public void setLabelByIndex(int index) {
-		setLabel("R" + index);
+		setLabel("X" + index);
 	}
 
 	public int getIndex() {

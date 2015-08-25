@@ -50,8 +50,8 @@ public class ZipInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.source1Index = arguments.getRegisterIndexes().get(0);
-		this.source2Index = arguments.getRegisterIndexes().get(1);
+		this.source1Index = arguments.getRegisterIndex(0);
+		this.source2Index = arguments.getRegisterIndex(1);
 	}
 
 	@Override
@@ -71,8 +71,8 @@ public class ZipInstruction extends Instruction {
 
 		int[] result1Words = DataTypeTools.createWordsFromOnePartPerWord(size, source1Parts);
 		int[] result2Words = DataTypeTools.createWordsFromOnePartPerWord(size, source2Parts);
-		neonRegSet.setRegisterValues(registerType, true, source1Index, result1Words);
-		neonRegSet.setRegisterValues(registerType, true, source2Index, result2Words);
+		neonRegSet.setRegisterValues(registerType, false, source1Index, result1Words);
+		neonRegSet.setRegisterValues(registerType, false, source2Index, result2Words);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}

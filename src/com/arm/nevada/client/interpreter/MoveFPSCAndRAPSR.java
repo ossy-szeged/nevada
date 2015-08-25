@@ -44,7 +44,7 @@ public class MoveFPSCAndRAPSR extends Instruction {
 	
 	@Override
 	public void bindArguments(Arguments arguments) {
-		this.registerIndex = arguments.getRegisterIndexes().get(0);
+		this.registerIndex = arguments.getRegisterIndex(0);
 		assert instruction == EnumInstruction.vmrs || instruction == EnumInstruction.vmsr;
 	}
 

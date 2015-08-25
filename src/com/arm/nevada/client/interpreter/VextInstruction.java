@@ -54,9 +54,9 @@ public class VextInstruction extends Instruction {
 	@Override
 	public void bindArguments(Arguments arguments) {
 		this.dataType = arguments.getType();
-		this.destinationIndex = arguments.getRegisterIndexes().get(0);
-		this.source1Index = arguments.getRegisterIndexes().get(1);
-		this.source2Index = arguments.getRegisterIndexes().get(2);
+		this.destinationIndex = arguments.getRegisterIndex(0);
+		this.source1Index = arguments.getRegisterIndex(1);
+		this.source2Index = arguments.getRegisterIndex(2);
 
 		this.immediateValue = (int) arguments.getImmediateValue() * (dataType.getSizeInBits() / 8);
 	}
@@ -70,7 +70,7 @@ public class VextInstruction extends Instruction {
 		int[] resultParts = calculate(source1Parts, source2Parts);
 
 		int[] resultWords = DataTypeTools.createWordsFromOnePartPerWord(size, resultParts);
-		neonRegSet.setRegisterValues(registerType, true, destinationIndex, resultWords);
+		neonRegSet.setRegisterValues(registerType, false, destinationIndex, resultWords);
 		machine.incrementPCBy4();
 		highlightRegisters(machine);
 	}

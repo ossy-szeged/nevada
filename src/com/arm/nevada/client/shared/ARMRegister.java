@@ -40,18 +40,32 @@ public enum ARMRegister {
 	R10(10),
 	R11(11),
 	R12(12),
-	/**
-	 * Also known as SP (Stack Pointer)
-	 */
 	R13(13),
-	/**
-	 * Also known as LR (Link Register)
-	 */
 	R14(14),
+	R15(15),
+	R16(16),
+	R17(17),
+	R18(18),
+	R19(19),
+	R20(20),
+	R21(21),
+	R22(22),
+	R23(23),
+	R24(24),
+	R25(25),
+	R26(26),
+	R27(27),
+	R28(28),
+	R29(29),
+	R30(30),
+	R31(31),
 	/**
-	 * Also known as PC (Program Counter)
+	 * Also known as WSP/SP (Stack Pointer) or WZR/XZR (Zero Register)
 	 */
-	R15(15);
+	R32(32);
+	/**
+	 * Known as PC (Program Counter)
+	 */
 
 	private final int index;
 

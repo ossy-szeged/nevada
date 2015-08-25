@@ -28,11 +28,14 @@ package com.arm.nevada.client.interpreter;
 
 import com.arm.nevada.client.interpreter.machine.Machine;
 import com.arm.nevada.client.parser.Arguments;
+import com.arm.nevada.client.parser.EnumArgumentListType;
 import com.arm.nevada.client.parser.EnumInstruction;
 
 public abstract class Instruction {
 	
 	private boolean breakpoint = false;
+
+	public EnumArgumentListType[] validArgumentListTypes;
 
 	/**
 	 * Initializes the fields. Must be called before using the object.
